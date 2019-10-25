@@ -38,24 +38,9 @@ A aplicação procura estimular a relação participante-orador, facilitando a c
 Para além disso, a aplicação permite que os participantes expressem a sua opinião, avaliando o funcionamento da conferência, a prestação de um orador, entre outros. Cada orador tem acesso às suas avaliações e a organização terá acesso a todas com o objetivo de aprimorar futuros eventos.
 A aplicação está disponível para Android e o link para download deverá ser fornecido pelos organizadores.
 
-Start by defining a clear and concise vision for your module, to help members of the team, contributors, and users into focusing their often disparate views into a concise, visual, and short textual form. It provides a "high concept" of the product for marketers, developers, and managers.
-
-A product vision describes the essential of the product and sets the direction to where a product is headed, and what the product will deliver in the future.
-
-To learn more about how to write a good product vision, please see also:
-* [How To Create A Convincing Product Vision To Guide Your Team, by uxstudioteam.com](https://uxstudioteam.com/ux-blog/product-vision/)
-* [Product Management: Product Vision, by ProductPlan](https://www.productplan.com/glossary/product-vision/)
-* [Vision, by scrumbook.org](http://scrumbook.org/value-stream/vision.html)
-* [How to write a vision, by dummies.com](https://www.dummies.com/business/marketing/branding/how-to-write-vision-and-mission-statements-for-your-brand/)
-* [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 
 ## Elevator Pitch
 Alguma vez sentiu que, na sua conferência, não foram colocadas questões suficientes ao orador? Somos a equipa da Easy Questions. Com a nossa aplicação os participantes podem esclarecer todas as suas dúvidas, anonimamente ou não, durante ou depois de uma apresentação. Por outro lado, gostaria de receber o feedback dos seus participantes? Esta aplicação permite que a sua voz seja ouvida contribuindo para melhorias na organização de futuros eventos. 
-
-Take a look at the following links to learn some techniques:
-* [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
-* [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
-* [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
 
 ## Requirements
 
@@ -79,6 +64,8 @@ Briefly describe each use case mentioning the following:
 * **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
 
 ### User stories
+[Trello](https://trello.com/b/OYwLccwN/easyquestions)
+
 This section will contain the requirements of the product described as **user stories**, organized in a global **user story map** with **user roles** or **themes**.
 
 For each theme, or role, you may add a small description here. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
