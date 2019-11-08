@@ -1,20 +1,17 @@
-<<<<<<< HEAD
-import 'package:easyquestions/Objects/registerForm.dart';
-=======
 import 'package:easyquestions/Objects/Registerform.dart';
+import 'package:easyquestions/Objects/askForm.dart';
 import 'package:easyquestions/Objects/loginForm.dart';
->>>>>>> b2f4633a26ba3af136522a01219e6ed594cee769
 import 'package:flutter/material.dart';
 import '../Objects/image_banner.dart';
 
 
 
-class RegisterPage extends StatefulWidget{
+class AskPage extends StatefulWidget{
   @override
-  _RegisterPageState createState() => new _RegisterPageState();
+  _AskPageState createState() => new _AskPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage>
+class _AskPageState extends State<AskPage>
 {
 
   @override
@@ -30,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage>
               crossAxisAlignment: CrossAxisAlignment.center,
 
               children: <Widget>[
-                new RegisterCard(),
+                new AskCard(),
               ],
             )
 

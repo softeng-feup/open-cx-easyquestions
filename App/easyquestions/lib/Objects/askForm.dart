@@ -1,7 +1,7 @@
 import 'package:easyquestions/Objects/button.dart';
 import 'package:flutter/material.dart';
 
-class RegisterCard extends StatelessWidget {
+class AskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Stack(
@@ -36,7 +36,7 @@ class RegisterCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Email",
+                  Text("Question",
                       style: TextStyle(
                         fontFamily: "Poppins-Medium",
                         fontWeight: FontWeight.bold,
@@ -44,49 +44,13 @@ class RegisterCard extends StatelessWidget {
                       )),
                   TextField(
                     decoration: InputDecoration(
-                        hintText: "Insert your email here!",
-                        hintStyle: TextStyle(color: Colors.black54, fontSize: 12.0)),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Text("Password",
-                      style: TextStyle(
-                          fontFamily: "Poppins-Medium",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 23)),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: "Insert your password here!",
-                        hintStyle: TextStyle(color: Colors.black54, fontSize: 12.0)),
-                  ),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: "Reenter your password here!",
+                        hintText: "Question",
                         hintStyle: TextStyle(color: Colors.black54, fontSize: 12.0)),
                   ),
                   SizedBox(
                     height: 30,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontFamily: "Poppins-Medium",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  button("REGISTER", ""),
+                  button("ENTER", ""),
                 ],
               ),
             ),
