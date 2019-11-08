@@ -10,7 +10,6 @@ class FormCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
     ),
-
     ),
 
           new Container(
@@ -80,7 +79,18 @@ class FormCard extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                button("ENTER", ""),
+
+                RaisedButton(
+                  padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  onPressed: ()
+                  {
+                    Navigator.pop(context,);
+                  },
+                  child: new Text("BACK"),
+                  //TODO: ADD button("ENTER", ""),
+                )
               ],
             ),
           ),
