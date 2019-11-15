@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1085172995215",
+    "firebase_url": "https://easyquestions-d1669.firebaseio.com",
+    "project_id": "easyquestions-d1669",
+    "storage_bucket": "easyquestions-d1669.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085172995215:android:78b35a9b851699342a0cfa",
+        "android_client_info": {
+          "package_name": "com.feup.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085172995215-ml7ev4seoj6sk7nvsbpvdtn7n6rp8k8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR3wP_FE0ex8ADq3CAHFwHq3tWG4pGonk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085172995215-ml7ev4seoj6sk7nvsbpvdtn7n6rp8k8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
