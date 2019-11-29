@@ -27,7 +27,7 @@ class _HomeState extends State<Home>
 
 
     return Scaffold(
-        appBar: loggedin_topBar(authNotifier),
+        appBar: loggedin_topBar(authNotifier, context),
 
     );
   }

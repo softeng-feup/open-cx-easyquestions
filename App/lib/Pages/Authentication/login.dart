@@ -1,6 +1,8 @@
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/API/db_authentication.dart';
+import 'package:app/Pages/talk_feed.dart';
+import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:provider/provider.dart';
@@ -84,10 +86,8 @@ class _LoginState extends State<Login> {
                               child: Text('Submit'),
                             ),
                             RaisedButton(
-                              onPressed: ()
-                              {
-                                Navigator.pop(context,);
-                              },
+                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()))
+                              ,
                               child: Text('Back'),
                             ),
                           ],
@@ -109,5 +109,8 @@ class _LoginState extends State<Login> {
 
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     login(user, authNotifier);
+
+    //Navigator.pop(context,);
+    Navigator.pop(context,);
   }
 }

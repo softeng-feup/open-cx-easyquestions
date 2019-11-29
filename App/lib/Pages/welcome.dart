@@ -16,7 +16,7 @@ class Welcome extends StatelessWidget{
           ),
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: EdgeInsets.only(top: 20),
               child: Column(
                 children: <Widget>[
                   Text(

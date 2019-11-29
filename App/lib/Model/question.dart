@@ -1,22 +1,20 @@
 import 'package:app/Model/answer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Question {
+  String id;
   String body;
   //Participant _author;
- // DateTime _dateTime;
-
+  Timestamp createdAt;
   Answer answer;
 
+  Question({this.body, this.answer});
 
-  Question.fromMap(Map<String, dynamic> data) {
-    // = data['Author'];
-    body = data['Body'];
-    answer = data['Answer'];
+  Map<String, dynamic> toMap(){
+    return {
+      'body': body,
+      'createdAt': createdAt,
+    };
   }
-
-  Map<String, dynamic> toMap() => {
-    'Body': body,
-    'Answer': answer,
-  };
 
 }

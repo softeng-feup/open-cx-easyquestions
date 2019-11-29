@@ -1,9 +1,11 @@
+
 import 'package:app/Model/question.dart';
 import 'package:app/Notifiers/notifier_question.dart';
+import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-loadQuestions(QuestionNotifier questionNotifier) async {
-  QuerySnapshot snapshot = await Firestore.instance.collection('Questions').getDocuments();
+loadQuestions(TalkNotifier talkNotifier, QuestionNotifier questionNotifier) async {
+/*  QuerySnapshot snapshot = await Firestore.instance.collection('Questions').getDocuments();
 
   List<Question> _questionList = [];
 
@@ -12,6 +14,17 @@ loadQuestions(QuestionNotifier questionNotifier) async {
     Question question = Question.fromMap(document.data);
     _questionList.add(question);
   });
+*/
+  questionNotifier.setQuestionList(talkNotifier.currentTalk.questions);
+}
 
-  questionNotifier.setQuestionList(_questionList);
+addQuestion(TalkNotifier talkNotifier, Question question) async {
+  CollectionReference questionRef = await Firestore.instance.collection('Questions');
+
+  DocumentReference documentReference = await questionRef.add(question.toMap());
+  question.id = documentReference.documentID;
+
+  print("uploaded question successfully: ${question.toString()}");
+
+  await documentReference.setData(question.toMap(), merge:true);
 }

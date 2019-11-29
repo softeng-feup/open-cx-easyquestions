@@ -3,7 +3,6 @@ import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:app/Pages/talk_detail.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,10 +24,9 @@ class _TalksFeedState extends State<TalksFeed> {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
 
-    print(talkNotifier.currentTalk.questions[0]);
 
     return Scaffold(
-   //   appBar: loggedin_topBar(authNotifier),
+      appBar: loggedin_topBar(authNotifier, context),
       body: ListView.separated( itemCount: talkNotifier.talkList.length, separatorBuilder: (BuildContext context, int index) => Divider(),itemBuilder: (BuildContext context, int index) {
           return ListTile(
               title: Text(talkNotifier.talkList[index].name),
