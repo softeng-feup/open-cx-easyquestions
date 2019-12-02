@@ -101,8 +101,8 @@ class _WriteReviewState extends State<WriteReview>{
 
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
 
-   // review.authorid = authNotifier.user.uid;
     review.talkid = talkNotifier.currentTalk.idDoc;
+    review.authorUsername = authNotifier.firebaseUser.displayName;
 
     addReview(talkNotifier, review);
 

@@ -16,7 +16,8 @@ class Login extends StatefulWidget{
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  User user = User();
+  String email, password;
+
 
   @override
   void initState() {
@@ -67,7 +68,7 @@ class _LoginState extends State<Login> {
                               decoration: InputDecoration(
                                   labelText: 'Email'
                               ),
-                              onSaved: (input) => user.email = input,
+                              onSaved: (input) => email = input,
                             ),
                             TextFormField(
                               validator: (input) {
@@ -79,7 +80,7 @@ class _LoginState extends State<Login> {
                               decoration: InputDecoration(
                                   labelText: 'Password'
                               ),
-                              onSaved: (input) => user.password = input,
+                              onSaved: (input) => password = input,
                               obscureText: true,
                             ),
                             RaisedButton(
@@ -109,9 +110,9 @@ class _LoginState extends State<Login> {
     _formKey.currentState.save();
 
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    login(user, authNotifier);
+    login(email, password, authNotifier);
 
-    //Navigator.pop(context,);
+
     Navigator.pop(context,);
   }
 }

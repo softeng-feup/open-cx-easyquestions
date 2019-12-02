@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget loggedin_topBar(authNotifier, context){
   return AppBar(
     title: Text(
-      authNotifier.user != null ? authNotifier.user.displayName : "Error"
+      authNotifier.firebaseUser != null ? authNotifier.firebaseUser.displayName : "Error!"
     ),
     actions: <Widget>[
       FlatButton(

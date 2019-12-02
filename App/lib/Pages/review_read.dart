@@ -5,6 +5,7 @@ import 'package:app/Model/review.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_review.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class _ReadReviewState extends State<ReadReview>{
       appBar: loggedin_topBar(authNotifier, context),
       body:
       (reviewsToDisplay.isEmpty ? noDataToShow() : displayReviews(reviewsToDisplay)),
+
     );
   }
 
@@ -47,7 +49,10 @@ class _ReadReviewState extends State<ReadReview>{
             child: Text("$index"),
           ), //maybe use profile's image instead of index
           isThreeLine: true,
-        //  title: Text(reviewsToDisplay[index].author.name + " says..."),
+          title: Text(reviewsToDisplay[index].authorUsername + " says...",
+          style: TextStyle(
+
+          ),),
           subtitle: Text(reviewsToDisplay[index].body),
           //add data
         );

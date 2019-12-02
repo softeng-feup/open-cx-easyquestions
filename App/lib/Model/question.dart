@@ -7,20 +7,20 @@ class Question {
 
   Timestamp createdAt;
 
-  String authorID;
+  String authorUsername;
 
   String answer;
 
   bool anonymous;
 
 
-  Question({this.idDoc, this.body, this.createdAt, this.authorID, this.answer});
+  Question({this.idDoc, this.body, this.createdAt, this.authorUsername, this.answer});
 
   Question.fromMap(Map<String, dynamic> data) {
     idDoc = data['idDoc'];
     body = data['Body'];
     createdAt = data['CreatedAt'];
-    authorID = data['Author'];
+    authorUsername = data['Author'];
     answer= data['Answer'];
     anonymous= data['Anonymous'];
   }
@@ -29,7 +29,7 @@ class Question {
     return {
       'Body': body,
       'CreatedAt': createdAt,
-      'Author': authorID,
+      'Author': authorUsername,
       'Answer': answer,
       'idDoc' : idDoc,
       'Anonymous': anonymous,

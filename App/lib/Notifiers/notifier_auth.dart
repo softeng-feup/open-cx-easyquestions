@@ -1,14 +1,22 @@
+import 'package:app/API/db_user.dart';
+import 'package:app/Model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthNotifier extends ChangeNotifier {
-  FirebaseUser _user;
+  FirebaseUser firebaseUser;
 
-  FirebaseUser get user => _user;
+  User user;
+  //User get user => _user;
 
-  //User user;
+
   void setUser(FirebaseUser user) {
-    _user = user;
+    firebaseUser = user;
+
+    if(user != null)
+      getUserFromDatabase(this, firebaseUser.uid);
+
     notifyListeners();
   }
+
 }

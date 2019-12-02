@@ -1,4 +1,5 @@
 import 'package:app/API/db_authentication.dart';
+import 'package:app/Components/error.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
@@ -16,13 +17,17 @@ class Register extends StatefulWidget{
 class RegisterState extends State<Register>
 {
   final _regFormKey = GlobalKey<FormState>();
-  User user = User();
+  String fullname, username, password, email;
+  String age;
+  bool isSpeaker=false;
 
   @override
   void initState() {
+    super.initState();
+
   AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
   initializeCurrentUser(authNotifier);
-  super.initState();
+
   }
 
   @override
@@ -39,7 +44,6 @@ class RegisterState extends State<Register>
               children: <Widget>[
                 Container(
                     width: double.infinity,
-                    height: 350,
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.8),
                         boxShadow: [
@@ -54,61 +58,105 @@ class RegisterState extends State<Register>
                         ]
                     ),
                     child:
+
                     Form(
+
                         key: _regFormKey,
-                        child: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (input) {
-                                if(input.isEmpty){
-                                  return 'Provide a valid name please'; //TODO: verification with regex -> no numbers
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                  labelText: 'Name'
+                        child:
+                        Padding(
+                            padding: EdgeInsets.all(25.0),
+
+                          child: Column(
+                            children: <Widget>[
+                              Text("Register", style:
+                                TextStyle(
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.bold,
+                                )
+                                ,),
+                              Text("Create your account. It's free and it only takes a minute.", style:
+                              TextStyle(
+                                fontSize: 12.5,
+                                color: Colors.black54,
+                              )),
+                              TextFormField(
+                                validator: (input) => noEmptyFields(input),
+                                decoration: InputDecoration(
+                                    labelText: 'Username'
+                                ),
+                                onSaved: (input) => username = input,
                               ),
-                              onSaved: (input) => user.name = input,
-                            ),
-                            TextFormField(
-                              validator: (input) {
-                                if(input.isEmpty){
-                                  return 'Provide a valid email please'; //TODO: verification with regex
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                  labelText: 'Email'
+                              TextFormField(
+                                validator: (input) => noEmptyFields(input),
+                                decoration: InputDecoration(
+                                    labelText: 'Full Name'
+                                ),
+                                onSaved: (input) => fullname = input,
                               ),
-                              onSaved: (input) => user.email = input,
-                            ),
-                            TextFormField(
-                              validator: (input) {
-                                if(input.length < 6){ //TODO: verification with regex + encryption
-                                  return 'Longer password please';
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                  labelText: 'Password'
+                              TextFormField(
+                                validator: (input) => noEmptyFields(input),
+                                decoration: InputDecoration(
+                                    labelText: 'Email'
+                                ),
+                                onSaved: (input) => email = input,
                               ),
-                              onSaved: (input) => user.password = input,
-                              obscureText: true,
-                            ),
-                            RaisedButton(
-                              onPressed: submitForm,
-                              child: Text('Submit'),
-                            ),
-                            RaisedButton(
-                              onPressed: ()
-                              {
-                                Navigator.pop(context,);
-                              },
-                              child: Text('Back'),
-                            ),
-                          ],
+                              TextFormField(
+                                validator: (input) => longerPassword(input),
+                                decoration: InputDecoration(
+                                    labelText: 'Password'
+                                ),
+                                onSaved: (input) => password = input,
+                                obscureText: true,
+                              ),
+                              TextFormField(
+                                validator: (input) => noEmptyFields(input),
+                                decoration: InputDecoration(
+                                    labelText: 'Age'
+                                ),
+                                onSaved: (input) => age = input,
+                              ),
+                              CheckboxListTile(
+                                  title: Text("Register as a speaker?", style:
+                                    TextStyle(
+                                      color: Colors.black54,
+
+                                    ),),
+                                  value: isSpeaker,
+                                  onChanged: (bool ans) {
+                                    setState(() {
+                                      isSpeaker = ans;
+                                    });
+                                  }
+                              ),
+                              SizedBox(height: 20.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  RaisedButton(
+                                    textColor: Colors.white,
+                                    color: Colors.blue,
+                                    onPressed: ()
+                                    {
+                                      Navigator.pop(context,);
+                                    },
+                                    child: Text('Back'),
+                                  ),
+
+                                  RaisedButton(
+                                    textColor: Colors.white,
+                                    color: Colors.blue,
+                                    onPressed: submitForm,
+                                    child: Text('Submit'),
+                                  ),
+
+                                ],
+                              ),
+
+                            ],
+                          )
                         )
                     )
+
                 )
               ],
             )
@@ -123,7 +171,8 @@ class RegisterState extends State<Register>
     }
     _regFormKey.currentState.save();
 
-    AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    register(user, authNotifier);
+    register(fullname, username, password, email, age, isSpeaker);
+
+    Navigator.pop(context, ); //Nao faz login imediatamente
   }
 }

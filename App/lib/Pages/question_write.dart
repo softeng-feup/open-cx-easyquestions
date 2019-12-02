@@ -105,6 +105,8 @@ class _WriteQuestionState extends State<WriteQuestion>{
 
     question.answer=null;
     question.anonymous = value;
+    AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen:false);
+    question.authorUsername = authNotifier.firebaseUser.displayName;
 
     QuestionNotifier questionNotifier = Provider.of<QuestionNotifier>(context, listen: false);
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
