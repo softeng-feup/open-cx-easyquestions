@@ -3,6 +3,7 @@ class User {
   String password;
   String email;
 
+  int prioridade;
   User();
 }
 

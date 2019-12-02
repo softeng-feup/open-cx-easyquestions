@@ -1,9 +1,11 @@
+import 'package:app/Components/error.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
-import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:app/Pages/question_read.dart';
 import 'package:app/Pages/question_write.dart';
+import 'package:app/Pages/review_read.dart';
+import 'package:app/Pages/review_write.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,22 +17,13 @@ class TalkDetail extends StatefulWidget{
 class _TalkDetailState extends State<TalkDetail> {
   int _currentIndex = 0;
 
-
-/*
-  @override
-  void initState() {
-    TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
-    super.initState();
-  }
-*/
-
   Widget callPage(int currentIndex){
     switch(currentIndex){
       case 0:
         {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (BuildContext context){
-                return WriteQuestion();
+                return ReadQuestion();
               }));
         }
         break;
@@ -38,7 +31,15 @@ class _TalkDetailState extends State<TalkDetail> {
         {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (BuildContext context){
-                return ReadQuestion();
+                return WriteQuestion();
+              }));
+        }
+        break;
+      case 2:
+        {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context){
+                return ReadReview();
               }));
         }
         break;
@@ -59,12 +60,28 @@ class _TalkDetailState extends State<TalkDetail> {
             child: Column(
                 children: <Widget>[
                   Text(talkNotifier.currentTalk.name),
-                  Text("Rate: " + talkNotifier.currentTalk.rate.toString()),
-                  Text(talkNotifier.currentTalk.body)
+                  Text("Likes: " + talkNotifier.currentTalk.reviewsIDs.length.toString()),
+                  Text(talkNotifier.currentTalk.body),
+                  Text(talkNotifier.currentTalk.questionIDs.length.toString()),
+                  SizedBox(height: 20),
          ],
           )
          )
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.thumb_up),
+        label: Text("Review me!", textAlign: TextAlign.center,),
+        foregroundColor: Colors.black87,
+        onPressed: (){
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context){
+                return WriteReview();
+              }));
+        },
+      ),
+
+
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (value) {
@@ -74,14 +91,19 @@ class _TalkDetailState extends State<TalkDetail> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.device_unknown),
-            title: Text('Ask a question'),
+            icon: Icon(Icons.chrome_reader_mode),
+            title: Text('Read all answers'),
+          ),
+          BottomNavigationBarItem(
+            icon:  Icon(Icons.device_unknown),
+            title: Text("Ask a question"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chrome_reader_mode),
-            title: Text('Read all answers'),
+            title: Text('Read all reviews'),
           )
         ],
+
       ),
     );
   }
