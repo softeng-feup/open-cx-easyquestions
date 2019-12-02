@@ -39,13 +39,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: Colors.lightBlue,
       ),
-      home: Consumer<AuthNotifier>(
+      home: TalksFeed(),
+      /*Consumer<AuthNotifier>(
         builder: (context, notifier, child) {
           return (notifier.user != null ? TalksFeed() : Welcome()); //TODO: replace TalksFeed with Home
         },
 
       ),
-
+*/
     );
   }
 }
