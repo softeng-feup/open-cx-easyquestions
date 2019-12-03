@@ -41,3 +41,13 @@ addQuestion(TalkNotifier talkNotifier, QuestionNotifier questionNotifier, Questi
   talkNotifier.currentTalk.addQuestionID(question.idDoc);
   updateTalk(talkNotifier);
 }
+
+updateQuestion(QuestionNotifier questionNotifier) async{
+
+    CollectionReference questionRef = Firestore.instance.collection('Questions');
+
+    Question question = questionNotifier.currentQuestion;
+
+    await questionRef.document(question.idDoc).updateData(question.toMap());
+
+}

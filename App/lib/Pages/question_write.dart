@@ -54,6 +54,12 @@ class _WriteQuestionState extends State<WriteQuestion>{
                           key: _questionKey,
                           child: Column(
                              children: <Widget>[
+                               Text("Ask your question", style:
+                               TextStyle(
+                                 fontSize: 25.0,
+                                 fontWeight: FontWeight.bold,
+                               )
+                                 ,),
                                 CircleAvatar(
                                   child: Text("?"),
                                 ),
@@ -83,6 +89,9 @@ class _WriteQuestionState extends State<WriteQuestion>{
                                 }
                               ),
                               RaisedButton(
+                                padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
+                                textColor: Colors.white,
+                                color: Colors.blue,
                                 onPressed: submitQuestion,
                                 child: Text('Submit'),
                               ),

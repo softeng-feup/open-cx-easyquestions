@@ -127,20 +127,7 @@ class _TalkDetailState extends State<TalkDetail> {
           )
         ],
       ),
-   /*   Center(
-          child: Container(
-            child: Column(
-                children: <Widget>[
-                  Text(talkNotifier.currentTalk.name,
-                  ),
-                  Text("Likes: " + talkNotifier.currentTalk.reviewsIDs.length.toString()),
-                  Text(talkNotifier.currentTalk.body),
-                  Text(talkNotifier.currentTalk.questionIDs.length.toString()),
-                  SizedBox(height: 20),
-         ],
-          )
-         )
-      ),*/
+
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.thumb_up),
         label: Text("Review me!", textAlign: TextAlign.center,),
@@ -164,15 +151,15 @@ class _TalkDetailState extends State<TalkDetail> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.chrome_reader_mode),
-            title: Text('Read all answers'),
+            icon: Icon(Icons.question_answer),
+            title: Text("Read all questions"),
           ),
           BottomNavigationBarItem(
             icon:  Icon(Icons.device_unknown),
             title: Text("Ask a question"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chrome_reader_mode),
+            icon: Icon(Icons.thumb_up),
             title: Text('Read all reviews'),
           )
         ],

@@ -84,10 +84,16 @@ class _LoginState extends State<Login> {
                               obscureText: true,
                             ),
                             RaisedButton(
+                              padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
+                              textColor: Colors.white,
+                              color: Colors.blue,
                               onPressed: submitForm,
                               child: Text('Submit'),
                             ),
                             RaisedButton(
+                              padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
+                              textColor: Colors.white,
+                              color: Colors.blue,
                               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()))
                               ,
                               child: Text('Back'),

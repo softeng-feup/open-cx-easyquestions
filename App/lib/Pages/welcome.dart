@@ -16,7 +16,7 @@ class Welcome extends StatelessWidget{
           ),
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(top: 50),
               child: Column(
                 children: <Widget>[
                   Text(
@@ -64,7 +64,14 @@ class Welcome extends StatelessWidget{
             ),
           ),
         ]
-    )
+    ),
+      bottomNavigationBar:
+    //Switch to feup's logo
+      Text("@FEUP", style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      ),
+    textAlign: TextAlign.center,),
     );
   }
 }

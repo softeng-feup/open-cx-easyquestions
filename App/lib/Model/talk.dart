@@ -8,6 +8,7 @@ class Talk{
   String name;
   String body;
 
+  String speakerID;
 
   Timestamp schedule;
 
@@ -18,14 +19,14 @@ class Talk{
   List reviewsIDs = [];
   List<Review> reviews = [];
 
-  Talk({this.idDoc, this.name, this.body, this.schedule, this.questionIDs, this.reviewsIDs});
+  Talk({this.idDoc, this.name, this.body, this.schedule, this.questionIDs, this.reviewsIDs, this.speakerID});
 
   Talk.fromMap(Map<dynamic, dynamic> data) {
     idDoc = data['idDoc'];
     name = data['Name'];
     body = data['Body'];
     schedule = data['Schedule'];
-
+    speakerID = data['SpeakerID'];
     questionIDs = data['Questions'];
     reviewsIDs = data['Reviews'];
   }
@@ -38,6 +39,7 @@ class Talk{
       'Schedule' : schedule,
       'Questions' : questionIDs,
       'Reviews' : reviewsIDs,
+      'SpeakerID' : speakerID,
     };
   }
 

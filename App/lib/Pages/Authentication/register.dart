@@ -133,6 +133,7 @@ class RegisterState extends State<Register>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   RaisedButton(
+                                    padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                                     textColor: Colors.white,
                                     color: Colors.blue,
                                     onPressed: ()
@@ -143,6 +144,7 @@ class RegisterState extends State<Register>
                                   ),
 
                                   RaisedButton(
+                                    padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                                     textColor: Colors.white,
                                     color: Colors.blue,
                                     onPressed: submitForm,
