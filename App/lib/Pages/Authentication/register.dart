@@ -1,4 +1,5 @@
 import 'package:app/API/db_authentication.dart';
+import 'package:app/API/db_profile.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
@@ -125,5 +126,7 @@ class RegisterState extends State<Register>
 
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     register(user, authNotifier);
+    UserProfile userProfile = UserProfile.register(user.email);
+    addProfile(userProfile);
   }
 }

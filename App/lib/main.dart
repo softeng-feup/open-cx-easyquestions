@@ -1,3 +1,4 @@
+import 'package:app/Notifiers/notifier_profile.dart';
 import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:app/Pages/welcome.dart';
@@ -19,7 +20,10 @@ void main() => runApp(MultiProvider(
     ),
     ChangeNotifierProvider(
       builder: (context) => QuestionNotifier(),
-    )
+    ),
+    ChangeNotifierProvider(
+      builder: (context) => ProfileNotifier(),
+    ),
   ],
   child: MyApp(),
 ));
