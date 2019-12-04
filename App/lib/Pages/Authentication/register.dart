@@ -19,8 +19,6 @@ class RegisterState extends State<Register>
   final _regFormKey = GlobalKey<FormState>();
   String fullname, username, password, email;
   String age;
-  bool isSpeaker=false;
-  bool isMod=false;
   String type = 'Normal';
 
   @override

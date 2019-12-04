@@ -15,6 +15,10 @@ class ReadQuestion extends StatefulWidget{
   _ReadQuestionState createState() => _ReadQuestionState();
 }
 
+String Reply = 'Reply';
+String Delete = 'Delete';
+String choice;
+
 class _ReadQuestionState extends State<ReadQuestion>{
   initState(){
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
@@ -22,6 +26,35 @@ class _ReadQuestionState extends State<ReadQuestion>{
 
     loadQuestions(questionNotifier);
     getTalkRelatedQuestions(talkNotifier, questionNotifier);
+  }
+
+  createAlertDialog(BuildContext context){
+    return showDialog(context: context,builder: (context){
+      return AlertDialog(
+        title: Text("Only Admins can do that!"),
+      );
+    });
+  }
+
+  createAlertDialog2(BuildContext context,List<Question> questionsToDisplay,int index){
+    return showDialog(context: context,builder: (context){
+      return AlertDialog(
+        title: Text("Press button to confirm!"),
+        content: RaisedButton.icon(onPressed: () async {
+          await Firestore.instance.collection('Questions').document(questionsToDisplay[index].idDoc).delete();
+          Navigator.of(context).pop();
+        },
+            icon: Icon(Icons.check), label: Text('Confirm')),
+      );
+    });
+  }
+
+  createAlertDialog3(BuildContext context){
+    return showDialog(context: context,builder: (context){
+      return AlertDialog(
+        title: Text("Only Speakers can do that!"),
+      );
+    });
   }
 
   Widget build(BuildContext context) {
@@ -41,11 +74,27 @@ class _ReadQuestionState extends State<ReadQuestion>{
 
   Widget displayQuestions(List<Question> questionsToDisplay, AuthNotifier authNotifier, QuestionNotifier questionNotifier, TalkNotifier talkNotifier){
     print(authNotifier.user.permission);
+
+    List<String> choices = <String>[Reply,Delete];
     return ListView.separated(
       itemCount: questionsToDisplay.length,
       separatorBuilder: (context, index) => Divider(),
       itemBuilder: (BuildContext context, int index)
       {
+        _choiceAction(String choice){
+          if(choice == Delete && (authNotifier.user.permission == 0 || authNotifier.user.permission == 1)){
+            createAlertDialog(context);
+          }
+          if(choice == Delete && authNotifier.user.permission == 2){
+            createAlertDialog2(context, questionsToDisplay, index);
+          }
+          if(choice == Reply && (authNotifier.user.permission == 0 || authNotifier.user.permission == 2 )){
+            createAlertDialog3(context);
+          }
+          if(choice == Reply && authNotifier.user.permission == 1){
+            enableAnswer(questionsToDisplay[index], questionNotifier, context);
+          }
+        }
         return ListTile(
           leading: CircleAvatar(
             child:
@@ -54,18 +103,18 @@ class _ReadQuestionState extends State<ReadQuestion>{
           isThreeLine: true,
           title: Text(questionsToDisplay[index].body),
           subtitle: (questionsToDisplay[index].answer != null ? Text(questionsToDisplay[index].answer) : Text("This question doesnt have an answer yet.")),
-          trailing:
-          (IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () async {
-              await Firestore.instance.collection('Questions').document(questionsToDisplay[index].idDoc).delete();
-              setState(() {
-
-              });
-            }
+          trailing: (PopupMenuButton<String>(
+            onSelected: _choiceAction,
+            icon: Icon(Icons.more_horiz),
+            itemBuilder: (BuildContext context){
+              return choices.map((String choice){
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
           ))
-
-          //(authNotifier.user.permission == 1 && (talkNotifier.currentTalk.speakerID == authNotifier.firebaseUser.uid) ) ? (enableAnswer(questionsToDisplay[index], questionNotifier, context)) : {},
         );
       },
 

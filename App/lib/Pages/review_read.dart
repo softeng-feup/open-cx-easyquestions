@@ -58,7 +58,6 @@ class _ReadReviewState extends State<ReadReview>{
       body: reviewsToDisplay.isEmpty ? noDataToShow() : displayReviews(reviewsToDisplay,authNotifier),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
           displayReviews(reviewsToDisplay, authNotifier);
         },
         child: Icon(Icons.refresh),
