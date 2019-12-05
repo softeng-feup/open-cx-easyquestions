@@ -2,8 +2,6 @@ import 'package:app/API/db_profile.dart';
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/API/db_authentication.dart';
-import 'package:app/Notifiers/notifier_profile.dart';
-import 'package:app/Pages/talk_feed.dart';
 import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
@@ -18,7 +16,8 @@ class Login extends StatefulWidget{
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  User user = User();
+  String email, password;
+
 
   @override
   void initState() {
@@ -28,6 +27,7 @@ class _LoginState extends State<Login> {
   }
 
   Widget build(BuildContext context) {
+
     return new Scaffold(
         backgroundColor: Colors.white,
         body: new Stack(
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                               decoration: InputDecoration(
                                   labelText: 'Email'
                               ),
-                              onSaved: (input) => user.email = input,
+                              onSaved: (input) => email = input,
                             ),
                             TextFormField(
                               validator: (input) {
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                               decoration: InputDecoration(
                                   labelText: 'Password'
                               ),
-                              onSaved: (input) => user.password = input,
+                              onSaved: (input) => password = input,
                               obscureText: true,
                             ),
                             RaisedButton(
@@ -107,12 +107,11 @@ class _LoginState extends State<Login> {
     if (!_formKey.currentState.validate()) {
       return;
     }
-    ProfileNotifier profileNotifier = Provider.of<ProfileNotifier>(context, listen: false);
     _formKey.currentState.save();
 
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    login(user, authNotifier);
-    loadProfiles(profileNotifier, user);
+    login(email, password, authNotifier);
+
 
     Navigator.pop(context,);
   }

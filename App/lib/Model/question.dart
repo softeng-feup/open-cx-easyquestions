@@ -1,19 +1,38 @@
-import 'package:app/Model/answer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; //to use timestamp
 
 class Question {
-  String id;
-  String body;
-  //Participant _author;
-  Timestamp createdAt;
-  Answer answer;
+  String idDoc;
 
-  Question({this.body, this.answer});
+  String body;
+
+  Timestamp createdAt;
+
+  String authorUsername;
+
+  String answer;
+
+  bool anonymous;
+
+
+  Question({this.idDoc, this.body, this.createdAt, this.authorUsername, this.answer});
+
+  Question.fromMap(Map<String, dynamic> data) {
+    idDoc = data['idDoc'];
+    body = data['Body'];
+    createdAt = data['CreatedAt'];
+    authorUsername = data['Author'];
+    answer= data['Answer'];
+    anonymous= data['Anonymous'];
+  }
 
   Map<String, dynamic> toMap(){
     return {
-      'body': body,
-      'createdAt': createdAt,
+      'Body': body,
+      'CreatedAt': createdAt,
+      'Author': authorUsername,
+      'Answer': answer,
+      'idDoc' : idDoc,
+      'Anonymous': anonymous,
     };
   }
 

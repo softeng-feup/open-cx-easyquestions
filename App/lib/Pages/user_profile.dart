@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:app/API/db_profile.dart';
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
-import 'package:app/Notifiers/notifier_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:provider/provider.dart';
@@ -19,15 +18,14 @@ class _ProfileState extends State<Profile> {
   AuthNotifier authNotifier;
   String _imageUrl;
   File _imageFile;
-  UserProfile _userProfile;
+  User _userProfile;
   bool _isUpdating;
   TextEditingController descController;
   @override
   void initState() {
     authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    ProfileNotifier profileNotifier = Provider.of<ProfileNotifier>(context, listen: false);
-    _userProfile = profileNotifier.currentUser;
-    _imageUrl = _userProfile.image;
+    _userProfile = authNotifier.user;
+    _imageUrl = _userProfile.image();
     _isUpdating = false;
     descController = new TextEditingController();
     super.initState();
@@ -194,7 +192,7 @@ class _ProfileState extends State<Profile> {
                                 children: <Widget>[
                                   new Flexible(
                                     child: new Text(
-                                      authNotifier.user.displayName,
+                                      authNotifier.firebaseUser.displayName,
                                       style: TextStyle(
                                           fontSize: 12.0),
                                     ),
@@ -229,7 +227,7 @@ class _ProfileState extends State<Profile> {
                                 children: <Widget>[
                                   new Flexible(
                                     child: new Text(
-                                      authNotifier.user.email,
+                                      authNotifier.firebaseUser.email,
                                       style: TextStyle(
                                           fontSize: 12.0),
                                     ),
@@ -263,8 +261,7 @@ class _ProfileState extends State<Profile> {
 
   submitForm(){
     _userProfile.description = descController.text;
-    ProfileNotifier profileNotifier = Provider.of<ProfileNotifier>(context, listen: false);
-    addImage(profileNotifier, _userProfile, _imageFile);
+    addImage(_userProfile, _imageFile);
     Navigator.pop(context, );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:app/Notifiers/notifier_profile.dart';
 import 'package:app/Notifiers/notifier_question.dart';
+import 'package:app/Notifiers/notifier_review.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +22,8 @@ void main() => runApp(MultiProvider(
       builder: (context) => QuestionNotifier(),
     ),
     ChangeNotifierProvider(
-      builder: (context) => ProfileNotifier(),
-    ),
+      builder: (context) => ReviewNotifier(),
+    )
   ],
   child: MyApp(),
 ));
@@ -41,10 +41,11 @@ class MyApp extends StatelessWidget {
       ),
       home: Consumer<AuthNotifier>(
         builder: (context, notifier, child) {
-          return (notifier.user != null ? TalksFeed() : Welcome()); //TODO: replace TalksFeed with Home
+          return (notifier.firebaseUser != null ? TalksFeed() : Welcome()); //TODO: replace TalksFeed with Home
         },
 
       ),
+
     );
   }
 }
