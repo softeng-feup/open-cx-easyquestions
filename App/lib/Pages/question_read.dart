@@ -2,6 +2,7 @@ import 'package:app/API/db_question.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Model/question.dart';
+import 'package:app/Model/talk.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
@@ -36,14 +37,16 @@ class _ReadQuestionState extends State<ReadQuestion>{
     });
   }
 
-  createAlertDialog2(BuildContext context,List<Question> questionsToDisplay,int index){
+  createAlertDialog2(BuildContext context, QuestionNotifier questionNotifier, TalkNotifier talkNotifier){
     return showDialog(context: context,builder: (context){
       return AlertDialog(
         title: Text("Press button to confirm!"),
-        content: RaisedButton.icon(onPressed: () async {
-          await Firestore.instance.collection('Questions').document(questionsToDisplay[index].idDoc).delete();
-          Navigator.of(context).pop();
-        },
+        content: RaisedButton.icon(onPressed: () {
+          removeQuestion(talkNotifier, questionNotifier);
+          //2 pops para obrigar o refresh
+          Navigator.pop(context, );
+          Navigator.pop(context, );
+          },
             icon: Icon(Icons.check), label: Text('Confirm')),
       );
     });
@@ -81,18 +84,24 @@ class _ReadQuestionState extends State<ReadQuestion>{
       separatorBuilder: (context, index) => Divider(),
       itemBuilder: (BuildContext context, int index)
       {
+        questionNotifier.currentQuestion = questionsToDisplay[index];
         _choiceAction(String choice){
           if(choice == Delete && (authNotifier.user.permission == 0 || authNotifier.user.permission == 1)){
             createAlertDialog(context);
           }
           if(choice == Delete && authNotifier.user.permission == 2){
-            createAlertDialog2(context, questionsToDisplay, index);
+            createAlertDialog2(context, questionNotifier, talkNotifier);
           }
           if(choice == Reply && (authNotifier.user.permission == 0 || authNotifier.user.permission == 2 )){
             createAlertDialog3(context);
           }
           if(choice == Reply && authNotifier.user.permission == 1){
-            enableAnswer(questionsToDisplay[index], questionNotifier, context);
+            print("Entrou no reply");
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return WriteAnswer();
+                }));
+            //enableAnswer(questionsToDisplay[index], questionNotifier, context);
           }
         }
         return ListTile(
@@ -121,26 +130,27 @@ class _ReadQuestionState extends State<ReadQuestion>{
     );
   }
 
-  enableAnswer(Question question, QuestionNotifier questionNotifier, BuildContext context){
+/* enableAnswer(Question question, QuestionNotifier questionNotifier, BuildContext context){
+
+
     questionNotifier.currentQuestion=question;
+    print("Cheguei");
     return
       ButtonTheme(
         buttonColor: Colors.blue,
           minWidth: 60,
-        child:RaisedButton(
-
+        child:
+        RaisedButton(
            child: Icon(Icons.reply),
-
             textColor: Colors.white,
             onPressed: () {
-             Navigator.of(context).push(
-               MaterialPageRoute(builder: (BuildContext context) {
-              return WriteAnswer();
-            }));
-      }
-    )
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return WriteAnswer();
+                  }));
+            })
       );
 
-  }
+  }*/
 }
 

@@ -1,4 +1,4 @@
-import 'package:app/Model/user.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 
@@ -52,8 +52,6 @@ register(String fullname, String username, String password, String email, String
           await firebaseUser.updateProfile(updateInfo);
           await firebaseUser.reload(); // é preciso para carregar os dados para o firebase
 
- //         FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
- //        authNotifier.setUser(currentUser);
 
           registerUser(firebaseUser, fullname, age, type);
         }

@@ -33,13 +33,15 @@ class _ReadReviewState extends State<ReadReview>{
     });
   }
 
-  createAlertDialog2(BuildContext context,List<Review> reviewsToDisplay,int index){
+  createAlertDialog2(BuildContext context, ReviewNotifier reviewNotifier, TalkNotifier talkNotifier){
     return showDialog(context: context,builder: (context){
       return AlertDialog(
         title: Text("Press button to confirm!"),
-        content: RaisedButton.icon(onPressed: () async {
-          await Firestore.instance.collection('Reviews').document(reviewsToDisplay[index].idDoc).delete();
-          Navigator.of(context).pop();
+        content: RaisedButton.icon(onPressed: () {
+          removeReview(talkNotifier, reviewNotifier);
+          //2 pops para obrigar o refresh
+          Navigator.pop(context, );
+          Navigator.pop(context, );
         },
             icon: Icon(Icons.check), label: Text('Confirm')),
       );
@@ -49,33 +51,32 @@ class _ReadReviewState extends State<ReadReview>{
   Widget build(BuildContext context) {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
+    ReviewNotifier reviewNotifier = Provider.of<ReviewNotifier>(context, listen: false);
 
     List<Review> reviewsToDisplay = talkNotifier.currentTalk.reviews;
     talkNotifier.currentTalk.reviews=[];
 
     return Scaffold(
       appBar: loggedin_topBar(authNotifier, context),
-      body: reviewsToDisplay.isEmpty ? noDataToShow() : displayReviews(reviewsToDisplay,authNotifier),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          displayReviews(reviewsToDisplay, authNotifier);
-        },
-        child: Icon(Icons.refresh),
-      ),
+      body: reviewsToDisplay.isEmpty ? noDataToShow() : displayReviews(reviewsToDisplay,authNotifier, talkNotifier, reviewNotifier),
+
     );
   }
 
-  Widget displayReviews(List<Review> reviewsToDisplay,AuthNotifier authNotifier){
+  Widget displayReviews(List<Review> reviewsToDisplay,AuthNotifier authNotifier, TalkNotifier talkNotifier, ReviewNotifier reviewNotifier ){
     return ListView.separated(
+
 
       itemCount: reviewsToDisplay.length,
       separatorBuilder: (context, index) => Divider(),
       itemBuilder: (BuildContext context, int index)
       {
+        reviewNotifier.currentReview = reviewsToDisplay[index];
+
         var _onPressed;
         if( authNotifier.user.permission == 2){
           _onPressed = ()  {
-            createAlertDialog2(context, reviewsToDisplay, index);
+            createAlertDialog2(context, reviewNotifier, talkNotifier);
           };
         }
         if(authNotifier.user.permission == 0 || authNotifier.user.permission == 1 ){

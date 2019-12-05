@@ -28,3 +28,4 @@ updateTalk(TalkNotifier talkNotifier) async{
   await talkRef.document(talk.idDoc).updateData(talk.toMap());
 }
 
+
