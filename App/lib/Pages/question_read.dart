@@ -2,12 +2,10 @@ import 'package:app/API/db_question.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Model/question.dart';
-import 'package:app/Model/talk.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:app/Pages/answer_write.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -96,12 +94,10 @@ class _ReadQuestionState extends State<ReadQuestion>{
             createAlertDialog3(context);
           }
           if(choice == Reply && authNotifier.user.permission == 1){
-            print("Entrou no reply");
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
                   return WriteAnswer();
                 }));
-            //enableAnswer(questionsToDisplay[index], questionNotifier, context);
           }
         }
         return ListTile(
@@ -130,27 +126,5 @@ class _ReadQuestionState extends State<ReadQuestion>{
     );
   }
 
-/* enableAnswer(Question question, QuestionNotifier questionNotifier, BuildContext context){
-
-
-    questionNotifier.currentQuestion=question;
-    print("Cheguei");
-    return
-      ButtonTheme(
-        buttonColor: Colors.blue,
-          minWidth: 60,
-        child:
-        RaisedButton(
-           child: Icon(Icons.reply),
-            textColor: Colors.white,
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return WriteAnswer();
-                  }));
-            })
-      );
-
-  }*/
 }
 

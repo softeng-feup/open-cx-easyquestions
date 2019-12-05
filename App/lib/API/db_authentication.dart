@@ -14,7 +14,7 @@ initializeCurrentUser(AuthNotifier authNotifier) async {
     }
 }
 
-login(String email, String password, AuthNotifier authNotifier) async {
+Future<bool> login(String email, String password, AuthNotifier authNotifier) async {
   AuthResult authResult = (await FirebaseAuth.instance
       .signInWithEmailAndPassword(email: email, password: password)
       .catchError((onError) => print (onError.code))
@@ -27,11 +27,13 @@ login(String email, String password, AuthNotifier authNotifier) async {
       if(firebaseUser != null)
         {
           authNotifier.setUser(firebaseUser);
-          print("Fez login");
+
+          return Future.value(true);
+
         }
     }
 
-
+  return Future.value(false);
 }
 
 register(String fullname, String username, String password, String email, String age, String type) async{

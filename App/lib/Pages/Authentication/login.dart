@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    initializeCurrentUser(authNotifier);
+    //initializeCurrentUser(authNotifier);
     super.initState();
   }
 
@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
                               padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                               textColor: Colors.white,
                               color: Colors.blue,
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()))
+                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome())) //Substituir com home
                               ,
                               child: Text('Back'),
                             ),
@@ -109,16 +109,20 @@ class _LoginState extends State<Login> {
     );
   }
 
-  submitForm(){
+  submitForm() async{
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
 
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
-    login(email, password, authNotifier);
 
+    if( await(login(email, password, authNotifier)) == true ) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => TalksFeed()));
+    }
+    else {
+      //TODO : mensagem de login errado
+    }
 
-    Navigator.pop(context,);
   }
 }

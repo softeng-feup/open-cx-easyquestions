@@ -6,7 +6,7 @@ class User {
   int permission;
   String avatar;
   String fullname;
-  int age;
+  String age;
   String description;
 
   User({this.permission, this.avatar, this.fullname, this.age, this.description, this.authID});

@@ -1,5 +1,4 @@
 import 'package:app/Model/review.dart';
-import 'package:app/Model/review.dart' as prefix0;
 import 'package:app/Notifiers/notifier_review.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

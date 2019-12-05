@@ -1,3 +1,5 @@
+import 'package:app/Components/loggedin_topbar.dart';
+import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:app/Pages/Authentication/login.dart';
@@ -5,6 +7,7 @@ import 'package:app/Pages/Authentication/register.dart';
 
 class Welcome extends StatelessWidget{
   Widget build(BuildContext context) {
+
     return Scaffold(
     body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

@@ -1,13 +1,10 @@
 import 'package:app/API/db_review.dart';
-import 'package:app/API/db_talk.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Model/review.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_review.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
