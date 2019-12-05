@@ -1,4 +1,4 @@
-import 'package:app/Components/error.dart';
+import 'package:app/API/db_user.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
@@ -17,6 +17,12 @@ class TalkDetail extends StatefulWidget{
 
 class _TalkDetailState extends State<TalkDetail> {
   int _currentIndex = 0;
+
+  initState(){
+    TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
+    getUserAvatar(talkNotifier, talkNotifier.currentTalk.speakerID);
+
+  }
 
   Widget callPage(int currentIndex){
     switch(currentIndex){
@@ -54,6 +60,9 @@ class _TalkDetailState extends State<TalkDetail> {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
 
+    String avatar = (talkNotifier.currentTalk.speakerAvatar);
+
+
     return Scaffold(
      appBar: loggedin_topBar(authNotifier, context),
       body:
@@ -65,27 +74,17 @@ class _TalkDetailState extends State<TalkDetail> {
           ),
           Positioned(
             width: MediaQuery.of(context).size.width,
-            top: MediaQuery.of(context).size.height/12,
+            top: MediaQuery.of(context).size.height/14,
             child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width:150,
+                  width: 150,
                   height: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    image: DecorationImage(
-                      image: NetworkImage(""), //imagem do speaker
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(75)
-                    ),
-                    boxShadow: [
-                      BoxShadow( blurRadius: 7.0, color: Colors.black87)
-                    ]
-                    )
+                  decoration: speakerAvatar(avatar),
                   ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Text(talkNotifier.currentTalk.name,
                   style: TextStyle(
                     fontSize: 25,
@@ -94,17 +93,23 @@ class _TalkDetailState extends State<TalkDetail> {
                   textAlign: TextAlign.center,
                 ),
 
-                Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child:
-                        Column(
+                Container(
+                  padding: EdgeInsets.all(10) ,
+                  height: MediaQuery.of(context).size.height/3.5,
+                         child:
+                         Column(
                           children: <Widget> [
-                            Text(talkNotifier.currentTalk.body,
-                              style: TextStyle(
-                                fontSize: 12.5,
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child:  Text(talkNotifier.currentTalk.body,
+                                  style: TextStyle(
+                                    fontSize: 12.5,
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
                               ),
-                            textAlign: TextAlign.justify,
                             ),
+
                             SizedBox(height: 10.0),
                             Text(talkNotifier.currentTalk.schedule.toDate().toString(),
                               style: TextStyle(
@@ -112,14 +117,14 @@ class _TalkDetailState extends State<TalkDetail> {
                               ),
                               textAlign: TextAlign.left,
                             ),
-                            Text("by Speaker",
+                            Text("by " + talkNotifier.currentTalk.speakerID, //TODO: change to name!
                               style: TextStyle(
                                 fontSize: 10.0,
                               ),
                               textAlign: TextAlign.left,
                             ),
 
-                    ]
+                           ]
                         )
                 ),
               ],

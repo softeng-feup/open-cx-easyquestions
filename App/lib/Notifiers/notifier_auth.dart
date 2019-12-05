@@ -7,6 +7,7 @@ class AuthNotifier extends ChangeNotifier {
   FirebaseUser firebaseUser;
 
   User user;
+  //User get user => _user;
 
 
   void setUser(FirebaseUser user) {

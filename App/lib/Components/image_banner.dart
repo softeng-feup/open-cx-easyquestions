@@ -27,3 +27,21 @@ class getClipper extends CustomClipper<Path> {
     return true;
   }
 }
+
+speakerAvatar(String avatar){
+  if(avatar != null)
+      return BoxDecoration(
+            image:
+            DecorationImage(
+              image:
+              NetworkImage(avatar), //imagem do speaker
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(75)
+            ),
+            boxShadow: [
+              BoxShadow( blurRadius: 7.0, color: Colors.black87)
+            ]
+        );
+
+}

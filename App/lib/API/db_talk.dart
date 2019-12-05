@@ -1,4 +1,5 @@
 
+import 'package:app/API/db_user.dart';
 import 'package:app/Model/talk.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,12 +14,17 @@ loadTalks(TalkNotifier talkNotifier) async {
   {
 
     Talk talk = Talk.fromMap(document.data);
+    talkNotifier.currentTalk=talk;
+    getUserAvatar(talkNotifier, talkNotifier.currentTalk.speakerID);
     _talkList.add(talk);
 
   });
 
   talkNotifier.setTalkList(_talkList);
+
 }
+
+
 
 updateTalk(TalkNotifier talkNotifier) async{
   CollectionReference talkRef = Firestore.instance.collection('Talk');
@@ -27,5 +33,7 @@ updateTalk(TalkNotifier talkNotifier) async{
 
   await talkRef.document(talk.idDoc).updateData(talk.toMap());
 }
+
+
 
 

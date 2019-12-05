@@ -271,6 +271,5 @@ class _ProfileState extends State<Profile> {
   submitForm(){
     _userProfile.description = descController.text;
     updateUser(_userProfile, _imageFile);
-    Navigator.pop(context, );
   }
 }

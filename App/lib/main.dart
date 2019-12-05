@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 
-import 'Pages/Personal/home.dart';
-import 'Pages/talk_feed.dart';
 
 
 void main() => runApp(MultiProvider(
@@ -39,12 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: Colors.lightBlue,
       ),
-      home: Consumer<AuthNotifier>(
-        builder: (context, notifier, child) {
-          return (notifier.firebaseUser != null ? TalksFeed() : Welcome()); //TODO: replace TalksFeed with Home
-        },
-
-      ),
+      home: Welcome(),
 
     );
   }

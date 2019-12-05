@@ -1,6 +1,7 @@
 import 'package:app/API/db_authentication.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
+import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:provider/provider.dart';
@@ -108,7 +109,7 @@ class RegisterState extends State<Register>
                                 obscureText: true,
                               ),
                               TextFormField(
-                                validator: (input) => noEmptyFields(input),
+                                validator: (input) => validateAge(input),
                                 decoration: InputDecoration(
                                     labelText: 'Age'
                                 ),
@@ -168,14 +169,21 @@ class RegisterState extends State<Register>
     );
   }
 
-  submitForm(){
+  submitForm() async{
     if (!_regFormKey.currentState.validate()) {
       return;
     }
     _regFormKey.currentState.save();
 
-    register(fullname, username, password, email, age, type);
 
-    Navigator.pop(context, );
+    if( await( register(fullname, username, password, email, age, type)) == true ) {
+      print("entrei");
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()));
+    }
+    else {
+
+      showWarning("Ups! There is already an user with those credentials.", context);
+    }
+
   }
 }

@@ -1,6 +1,8 @@
 
+import 'package:app/Components/error.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'db_user.dart';
 
@@ -36,7 +38,7 @@ Future<bool> login(String email, String password, AuthNotifier authNotifier) asy
   return Future.value(false);
 }
 
-register(String fullname, String username, String password, String email, String age, String type) async{
+Future<bool> register(String fullname, String username, String password, String email, String age, String type) async{
   AuthResult authResult = await FirebaseAuth.instance
       .createUserWithEmailAndPassword(email: email, password: password)
       .catchError((onError) => print (onError.hashCode)
@@ -56,10 +58,12 @@ register(String fullname, String username, String password, String email, String
 
 
           registerUser(firebaseUser, fullname, age, type);
+          return Future.value(true);
         }
 
     }
 
+  return Future.value(false);
 
 }
 
@@ -67,4 +71,14 @@ signout(AuthNotifier authNotifier) async {
   await FirebaseAuth.instance.signOut().catchError((error) => print(error.code));
 
   authNotifier.setUser(null);
+}
+
+resetPasswordWithEmail(String email){
+  var auth = FirebaseAuth.instance;
+  auth.sendPasswordResetEmail(email: email).catchError((e) {
+    return e.code;
+  });
+
+  return "An email was sent to: " + email;
+
 }

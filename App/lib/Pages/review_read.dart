@@ -62,8 +62,6 @@ class _ReadReviewState extends State<ReadReview>{
 
   Widget displayReviews(List<Review> reviewsToDisplay,AuthNotifier authNotifier, TalkNotifier talkNotifier, ReviewNotifier reviewNotifier ){
     return ListView.separated(
-
-
       itemCount: reviewsToDisplay.length,
       separatorBuilder: (context, index) => Divider(),
       itemBuilder: (BuildContext context, int index)
@@ -86,12 +84,8 @@ class _ReadReviewState extends State<ReadReview>{
             child: Text("$index"),
           ), //maybe use profile's image instead of index
           isThreeLine: true,
-          title: Text(reviewsToDisplay[index].authorUsername + " says...",
-          style: TextStyle(
-
-          ),),
+          title: Text(reviewsToDisplay[index].authorUsername + " says..."),
           subtitle: Text(reviewsToDisplay[index].body),
-          //add data
           trailing: IconButton(
             icon: Icon(Icons.delete),
             onPressed: _onPressed,

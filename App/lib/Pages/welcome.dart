@@ -70,9 +70,9 @@ class Welcome extends StatelessWidget{
     ),
       bottomNavigationBar:
     //Switch to feup's logo
-      Text("@FEUP", style: TextStyle(
+      Text("by easy questions", style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 14,
       ),
     textAlign: TextAlign.center,),
     );

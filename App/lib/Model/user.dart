@@ -1,9 +1,7 @@
 
-
 class User {
   String authID; //related to firebase user
   String idDoc;
-
 
   int permission;
   String avatar;

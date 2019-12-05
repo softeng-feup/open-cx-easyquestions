@@ -1,13 +1,13 @@
-
+import 'package:app/Components/error.dart';
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/API/db_authentication.dart';
+import 'package:app/Pages/talk_feed.dart';
+import 'package:app/Pages/user_profile.dart';
 import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:provider/provider.dart';
-
-import '../talk_feed.dart';
 
 class Login extends StatefulWidget{
   @override
@@ -19,15 +19,16 @@ class Login extends StatefulWidget{
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String email, password;
+  String warning = null;
 
-
+/*
   @override
   void initState() {
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     //initializeCurrentUser(authNotifier);
     super.initState();
   }
-
+*/
   Widget build(BuildContext context) {
 
     return new Scaffold(
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
               children: <Widget>[
                 Container(
                 width: double.infinity,
-                    height: 350,
+
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.8),
                         boxShadow: [
@@ -58,8 +59,18 @@ class _LoginState extends State<Login> {
                     child:
                     Form(
                         key: _formKey,
-                        child: Column(
+                        child: Padding(
+                            padding: EdgeInsets.all(25.0),
+                            child:
+                            Column(
                           children: <Widget>[
+                            Text("Sign in", style:
+                            TextStyle(
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            )
+                              ,),
+
                             TextFormField(
                               validator: (input) {
                                 if(input.isEmpty){
@@ -85,11 +96,19 @@ class _LoginState extends State<Login> {
                               onSaved: (input) => password = input,
                               obscureText: true,
                             ),
+                            FlatButton(
+                              child: Text("Forgot password?\nClick here to reset it!", style: TextStyle(color: Colors.black54), textAlign: TextAlign.center,),
+                              onPressed: resetPassword,
+                            ),
+
+                            SizedBox(height: 10,),
                             RaisedButton(
                               padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                               textColor: Colors.white,
                               color: Colors.blue,
-                              onPressed: submitForm,
+                              onPressed:
+                                submitForm,
+
                               child: Text('Submit'),
                             ),
                             RaisedButton(
@@ -102,10 +121,11 @@ class _LoginState extends State<Login> {
                             ),
                           ],
                         )
+                        )
                     )
                 )
               ],
-            )
+                )
           ],
         )
     );
@@ -123,8 +143,27 @@ class _LoginState extends State<Login> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => TalksFeed()));
     }
     else {
-      //TODO : mensagem de login errado
+      warning = "Ups! Your credentials are incorrect.";
+      showWarning(warning, context);
     }
 
   }
+
+  resetPassword() async {
+
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+
+
+    warning = resetPasswordWithEmail(email);
+
+    showWarning(warning, context);
+
+    Navigator.pop(context,);
+  }
+
+
+
 }

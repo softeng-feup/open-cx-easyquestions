@@ -34,6 +34,7 @@ class _WriteQuestionState extends State<WriteQuestion>{
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
+                    padding: EdgeInsets.all(20),
                       width: double.infinity,
                       height: 350,
                       decoration: BoxDecoration(
@@ -53,16 +54,15 @@ class _WriteQuestionState extends State<WriteQuestion>{
                       Form(
                           key: _questionKey,
                           child: Column(
-                             children: <Widget>[
+                             children: <Widget> [
+
                                Text("Ask your question", style:
                                TextStyle(
                                  fontSize: 25.0,
                                  fontWeight: FontWeight.bold,
                                )
                                  ,),
-                                CircleAvatar(
-                                  child: Text("?"),
-                                ),
+
                                 TextFormField(
                                   validator: (input) {
                                     if(input.isEmpty){
@@ -73,14 +73,17 @@ class _WriteQuestionState extends State<WriteQuestion>{
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       labelText: 'Tap here to write your question',
-                                      contentPadding: const EdgeInsets.all(20.0)
+                                      contentPadding: const EdgeInsets.all(15.0)
                                   ),
                                   onSaved: (input) => question.body = input,
 
                                 ),
 
                               CheckboxListTile(
-                                title: Text("Anonymous question."),
+                                title: Text("Anonymous question.", style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black54
+                                ),),
                                 value: value,
                                 onChanged: (bool ans) {
                                   setState(() {
@@ -88,6 +91,7 @@ class _WriteQuestionState extends State<WriteQuestion>{
                                   });
                                 }
                               ),
+                              SizedBox(height: MediaQuery.of(context).size.height/8,),
                               RaisedButton(
                                 padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                                 textColor: Colors.white,

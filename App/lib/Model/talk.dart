@@ -1,5 +1,6 @@
 import 'package:app/Model/question.dart';
 import 'package:app/Model/review.dart';
+import 'package:app/Model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Talk{
@@ -8,6 +9,7 @@ class Talk{
   String name;
   String body;
 
+  String speakerAvatar;
   String speakerID;
 
   Timestamp schedule;
@@ -30,6 +32,7 @@ class Talk{
     speakerID = data['SpeakerID'];
     questionIDs = data['Questions'];
     reviewsIDs = data['Reviews'];
+    speakerAvatar = data['SpeakerAvatar'];
   }
 
   Map<String, dynamic> toMap(){
@@ -41,6 +44,7 @@ class Talk{
       'Questions' : questionIDs,
       'Reviews' : reviewsIDs,
       'SpeakerID' : speakerID,
+      'SpeakerAvatar' : speakerAvatar,
     };
   }
 
