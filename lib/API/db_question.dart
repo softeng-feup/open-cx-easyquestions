@@ -1,9 +1,7 @@
 import 'package:app/Model/question.dart';
-import 'package:app/Model/talk.dart';
 import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'db_talk.dart';
 
@@ -26,23 +24,17 @@ getTalkRelatedQuestions(TalkNotifier talkNotifier, QuestionNotifier questionNoti
     }
 }
 
-removeQuestionFromTalk(TalkNotifier talkNotifier, QuestionNotifier questionNotifier ){
-  for(int i=0; i<talkNotifier.currentTalk.questionIDs.length; i++){
-    String key = talkNotifier.currentTalk.questionIDs[i];
-    if (questionNotifier.currentQuestion.idDoc == key){
-      talkNotifier.currentTalk.questionIDs.remove(key);
-    }
-  }
-
-}
-
 addQuestion(TalkNotifier talkNotifier, QuestionNotifier questionNotifier, Question question) async {
+
+
   CollectionReference questionRef = await Firestore.instance.collection('Questions');
 
   DocumentReference documentReference = await questionRef.add(question.toMap());
 
   question.idDoc = documentReference.documentID;
   question.createdAt = Timestamp.now();
+
+
 
   await documentReference.setData(question.toMap(), merge:true);
 
@@ -57,14 +49,5 @@ updateQuestion(QuestionNotifier questionNotifier) async{
     Question question = questionNotifier.currentQuestion;
 
     await questionRef.document(question.idDoc).updateData(question.toMap());
-
-}
-
-removeQuestion(TalkNotifier talkNotifier, QuestionNotifier questionNotifier) async {
-  Question question = questionNotifier.currentQuestion;
-  await Firestore.instance.collection('Questions').document(question.idDoc).delete();
-
-  removeQuestionFromTalk(talkNotifier, questionNotifier);
-  updateTalk(talkNotifier);
 
 }

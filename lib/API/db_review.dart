@@ -1,4 +1,5 @@
 import 'package:app/Model/review.dart';
+import 'package:app/Model/review.dart' as prefix0;
 import 'package:app/Notifiers/notifier_review.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,25 +40,4 @@ getTalkRelatedReviews(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier){
       talkNotifier.currentTalk.reviews.add(reviewNotifier.reviewList[key]);
     }
   }
-}
-
-removeReviewFromTalk(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier)
-{
-  for(int i=0; i<talkNotifier.currentTalk.reviewsIDs.length; i++){
-    String key = talkNotifier.currentTalk.reviewsIDs[i];
-    if (reviewNotifier.currentReview.idDoc == key) {
-      talkNotifier.currentTalk.reviewsIDs.remove(key);
-    }
-
-  }
-}
-
-
-removeReview(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier) async {
-  Review review = reviewNotifier.currentReview;
-
-  await Firestore.instance.collection('Reviews').document(reviewNotifier.currentReview.idDoc).delete();
-
-  removeReviewFromTalk(talkNotifier, reviewNotifier);
-  updateTalk(talkNotifier);
 }

@@ -1,22 +1,16 @@
 
-
 class User {
   String authID; //related to firebase user
   String idDoc;
 
-
   int permission;
   String avatar;
   String fullname;
-  String age;
+  int age;
   String description;
 
   User({this.permission, this.avatar, this.fullname, this.age, this.description, this.authID});
 
-
-  String image(){
-    return avatar;
-  }
 
   User.fromMap(Map<dynamic, dynamic> data) {
     idDoc = data['idDoc'];

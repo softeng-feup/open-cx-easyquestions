@@ -1,4 +1,4 @@
-
+import 'package:app/Model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 
@@ -14,7 +14,7 @@ initializeCurrentUser(AuthNotifier authNotifier) async {
     }
 }
 
-Future<bool> login(String email, String password, AuthNotifier authNotifier) async {
+login(String email, String password, AuthNotifier authNotifier) async {
   AuthResult authResult = (await FirebaseAuth.instance
       .signInWithEmailAndPassword(email: email, password: password)
       .catchError((onError) => print (onError.code))
@@ -27,13 +27,11 @@ Future<bool> login(String email, String password, AuthNotifier authNotifier) asy
       if(firebaseUser != null)
         {
           authNotifier.setUser(firebaseUser);
-
-          return Future.value(true);
-
+          print("Fez login");
         }
     }
 
-  return Future.value(false);
+
 }
 
 register(String fullname, String username, String password, String email, String age, String type) async{
@@ -54,6 +52,8 @@ register(String fullname, String username, String password, String email, String
           await firebaseUser.updateProfile(updateInfo);
           await firebaseUser.reload(); // é preciso para carregar os dados para o firebase
 
+ //         FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+ //        authNotifier.setUser(currentUser);
 
           registerUser(firebaseUser, fullname, age, type);
         }

@@ -1,10 +1,10 @@
 import 'package:app/API/db_authentication.dart';
-import 'package:app/API/db_profile.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:provider/provider.dart';
+import 'package:app/Model/user.dart';
 
 
 class Register extends StatefulWidget{
@@ -177,6 +177,6 @@ class RegisterState extends State<Register>
 
     register(fullname, username, password, email, age, type);
 
-    Navigator.pop(context, );
+    Navigator.pop(context, ); //Nao faz login imediatamente
   }
 }
