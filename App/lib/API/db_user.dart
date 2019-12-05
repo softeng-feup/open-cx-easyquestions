@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:uuid/uuid.dart';
+import 'package:path/path.dart' as path;
 
 
 void getUserFromDatabase(AuthNotifier authNotifier, String authID) async {
@@ -40,5 +45,35 @@ registerUser(FirebaseUser firebaseUser, String fullname, String age, String type
 
 
   await documentReference.setData(user.toMap(), merge:true);
+
+}
+
+updateUser(User user, File image) async{
+  if (image != null) {
+    print("uploading image");
+
+    var fileExtension = path.extension(image.path);
+    print(fileExtension);
+
+    var uuid = Uuid().v4();
+
+    final StorageReference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child('images/$uuid$fileExtension');
+
+    await firebaseStorageRef
+        .putFile(image)
+        .onComplete
+        .catchError((onError) {
+      print(onError);
+      return false;
+    });
+
+    String url = await firebaseStorageRef.getDownloadURL();
+    user.avatar = url;
+  }
+
+  CollectionReference userRef = Firestore.instance.collection('Users');
+
+  userRef.document(user.idDoc).updateData(user.toMap());
 
 }

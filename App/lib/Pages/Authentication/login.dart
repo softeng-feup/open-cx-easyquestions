@@ -1,4 +1,4 @@
-import 'package:app/API/db_profile.dart';
+
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/API/db_authentication.dart';
@@ -6,6 +6,8 @@ import 'package:app/Pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:provider/provider.dart';
+
+import '../talk_feed.dart';
 
 class Login extends StatefulWidget{
   @override

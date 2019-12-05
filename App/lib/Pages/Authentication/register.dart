@@ -1,5 +1,4 @@
 import 'package:app/API/db_authentication.dart';
-import 'package:app/API/db_profile.dart';
 import 'package:app/Components/error.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';

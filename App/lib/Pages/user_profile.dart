@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app/API/db_profile.dart';
+import 'package:app/API/db_user.dart';
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _ProfileState extends State<Profile> {
   void initState() {
     authNotifier = Provider.of<AuthNotifier>(context, listen: false);
     _userProfile = authNotifier.user;
-    _imageUrl = _userProfile.image();
+    _imageUrl = _userProfile.avatar;
     _isUpdating = false;
     descController = new TextEditingController();
     super.initState();
@@ -34,7 +34,9 @@ class _ProfileState extends State<Profile> {
 
   _showImage() {
     if (_imageFile == null && _imageUrl == null) {
-      return Text("image placeholder");
+      return Container(
+        decoration: BoxDecoration(color: Colors.white),
+      );
     } else if (_imageFile != null) {
       print('showing image from local file');
 
@@ -138,34 +140,6 @@ class _ProfileState extends State<Profile> {
                               : SizedBox(height: 0),
                           Padding(
                               padding: EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 50.0),
-                              child: new Row(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  new Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      new Text(
-                                        'Personal Information',
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                  new Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                    ],
-                                  )
-                                ],
-                              )),
-                          Padding(
-                              padding: EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 25.0),
                               child: new Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -236,6 +210,41 @@ class _ProfileState extends State<Profile> {
                               )),
                           Padding(
                               padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      new Text(
+                                        'Age',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new Flexible(
+                                    child: new Text(
+                                      _userProfile.age,
+                                      style: TextStyle(
+                                          fontSize: 12.0),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 2.0),
                               child: _buildDescriptionField()
                           ),
@@ -261,7 +270,7 @@ class _ProfileState extends State<Profile> {
 
   submitForm(){
     _userProfile.description = descController.text;
-    addImage(_userProfile, _imageFile);
+    updateUser(_userProfile, _imageFile);
     Navigator.pop(context, );
   }
 }
