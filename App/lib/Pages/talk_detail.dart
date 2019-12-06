@@ -61,7 +61,7 @@ class _TalkDetailState extends State<TalkDetail> {
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
 
     String avatar = (talkNotifier.currentTalk.speakerAvatar);
-
+    print(avatar);
 
     return Scaffold(
      appBar: loggedin_topBar(authNotifier, context),

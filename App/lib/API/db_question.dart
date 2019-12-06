@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'db_talk.dart';
 
 loadQuestions(QuestionNotifier questionNotifier) async {
+
   QuerySnapshot snapshot = await Firestore.instance.collection('Questions').getDocuments();
   snapshot.documents.forEach((document)
   {
@@ -27,13 +28,17 @@ getTalkRelatedQuestions(TalkNotifier talkNotifier, QuestionNotifier questionNoti
 }
 
 removeQuestionFromTalk(TalkNotifier talkNotifier, QuestionNotifier questionNotifier ){
+  List<String> ids = talkNotifier.currentTalk.questionIDs;
+
   for(int i=0; i<talkNotifier.currentTalk.questionIDs.length; i++){
     String key = talkNotifier.currentTalk.questionIDs[i];
     if (questionNotifier.currentQuestion.idDoc == key){
-      talkNotifier.currentTalk.questionIDs.remove(key);
+      ids.remove(key);
+      talkNotifier.currentTalk.questionIDs=ids;
     }
   }
 
+  updateTalk(talkNotifier);
 }
 
 addQuestion(TalkNotifier talkNotifier, QuestionNotifier questionNotifier, Question question) async {

@@ -157,11 +157,14 @@ class _LoginState extends State<Login> {
     _formKey.currentState.save();
 
 
+
     warning = resetPasswordWithEmail(email);
+
+    print(warning);
 
     showWarning(warning, context);
 
-    Navigator.pop(context,);
+   // Navigator.pop(context,);
   }
 
 

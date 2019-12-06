@@ -43,13 +43,19 @@ getTalkRelatedReviews(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier){
 
 removeReviewFromTalk(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier)
 {
+  List<String> ids = talkNotifier.currentTalk.reviewsIDs;
+
   for(int i=0; i<talkNotifier.currentTalk.reviewsIDs.length; i++){
     String key = talkNotifier.currentTalk.reviewsIDs[i];
     if (reviewNotifier.currentReview.idDoc == key) {
-      talkNotifier.currentTalk.reviewsIDs.remove(key);
+
+      ids.remove(key);
+      talkNotifier.currentTalk.reviewsIDs=ids;
     }
 
   }
+
+  updateTalk(talkNotifier);
 }
 
 

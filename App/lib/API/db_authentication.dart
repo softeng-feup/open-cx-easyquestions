@@ -76,6 +76,7 @@ signout(AuthNotifier authNotifier) async {
 resetPasswordWithEmail(String email){
   var auth = FirebaseAuth.instance;
   auth.sendPasswordResetEmail(email: email).catchError((e) {
+    print(e.code);
     return e.code;
   });
 
