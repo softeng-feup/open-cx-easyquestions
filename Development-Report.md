@@ -53,7 +53,7 @@ Alguma vez sentiu que, na sua conferência, não foram colocadas questões sufic
 3) Manager: representa a organização da conferência (utilizador com mais privilégios)
 
 * **Description**. 
-Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case. 
+Caso seja responder a uma pergunta, fazê-la ou avaliar uma sessão, tudo é possível através da aplicação.
 
 * **Preconditions and Postconditions**. 
 Tanto o Participante como o Orador devem registar-se na aplicação para poderem colocar/ler questões ou avaliações.
@@ -68,11 +68,11 @@ Manager: Pode apagar questões ou avaliações; lê as avaliações.
 O participante ou o orador não conseguem efetuar o login (os dados estão errados): são reencaminhados para uma página de recuperação de dados. Tentam efetuar o login posteriormente.
 
 ### User stories
-[Trello - User Stories*](https://trello.com/b/OYwLccwN/easyquestions)
-<br>
-[Mockups](Mockups/)
 
-*No Trello estão todas as user stories, mockups associados e acceptance tests. As user stories estão ordenadas por prioridades de implementação. 
+* **Como participante, orador ou manager, quero ter acesso à lista de eventos**
+
+ e respetivas informações (como data e hora).
+
 
 
 ### Domain model
