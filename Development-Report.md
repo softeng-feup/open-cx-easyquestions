@@ -71,30 +71,37 @@ O participante ou o orador não conseguem efetuar o login (os dados estão errad
 
 * **Como utilizador, quero ter acesso à lista de eventos**
 Seja como participante, orador ou manager quero ter acesso à lista de eventos, assim como às suas respetivas informações (local, hora).
+
 ![Use case diagram](userstory1.png)
 
 * **Como utilizador quero avaliar**
 Seja como participante, orador ou manager quero escrever avaliações em relação a um evento, promovendo a sua melhoria.
+
 ![Use case diagram](userstory2.png)
 
 * **Como orador quero ler avaliaçoes**
 Como orador, quero ler as avaliações da minha sessão, de forma a melhorar as minhas conferências.
+
 ![Use case diagram](userstory3.png)
 
 * **Como participante, quero escrever questões**
 Como participante quero escrever questões ao orador, anónimas ou não, para esclarecer as minhas dúvidas sobre a sessão.
+
 ![Use case diagram](userstory4.png)
 
 * **Como orador, quero ler questões**
 Como orador, quero ler as questões sobre a minha conferência no fim da mesma, para poder dar respostas às perguntas não abordadas durante a sessão.
+
 ![Use case diagram](userstory5.png)
 
 * **Como manager, quero apagar questões**
 Como manager, quero poder apagar questões, pois podem ser repetidas ou despropositadas.
+
 ![Use case diagram](userstory6.png)
 
 * **Como manager, quero apagar avaliações**
 Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despropositadas.
+
 ![Use case diagram](userstory7.png)
 
 ### Domain model
