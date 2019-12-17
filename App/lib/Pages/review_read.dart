@@ -54,7 +54,7 @@ class _ReadReviewState extends State<ReadReview>{
     talkNotifier.currentTalk.reviews=[];
 
     return Scaffold(
-      appBar: loggedin_topBar(authNotifier, context),
+      appBar: loggedin_topBar(authNotifier, context, false),
       body: reviewsToDisplay.isEmpty ? noDataToShow() : displayReviews(reviewsToDisplay,authNotifier, talkNotifier, reviewNotifier),
 
     );

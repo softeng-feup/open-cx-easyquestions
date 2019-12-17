@@ -64,7 +64,8 @@ class _TalkDetailState extends State<TalkDetail> {
     print(avatar);
 
     return Scaffold(
-     appBar: loggedin_topBar(authNotifier, context),
+      key: Key('TalkDetails'),
+     appBar: loggedin_topBar(authNotifier, context, false),
       body:
       Stack(
         children: <Widget>[
@@ -134,6 +135,7 @@ class _TalkDetailState extends State<TalkDetail> {
       ),
 
       floatingActionButton: FloatingActionButton.extended(
+        key: Key('ReviewButton'),
         icon: Icon(Icons.thumb_up),
         label: Text("Review me!", textAlign: TextAlign.center,),
         foregroundColor: Colors.black87,

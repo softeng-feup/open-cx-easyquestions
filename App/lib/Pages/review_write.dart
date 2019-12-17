@@ -23,7 +23,8 @@ class _WriteReviewState extends State<WriteReview>{
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context, listen: false);
 
     return Scaffold(
-        appBar: loggedin_topBar(authNotifier, context),
+      key: Key('WriteReview'),
+        appBar: loggedin_topBar(authNotifier, context, false),
         resizeToAvoidBottomPadding: false,
         body:
         Stack(

@@ -23,7 +23,7 @@ class _WriteAnswerState extends State<WriteAnswer>{
     question = questionNotifier.currentQuestion;
 
     return Scaffold(
-        appBar: loggedin_topBar(authNotifier, context),
+        appBar: loggedin_topBar(authNotifier, context, false),
         resizeToAvoidBottomPadding: false,
         body:
         Stack(

@@ -110,7 +110,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: loggedin_topBar(authNotifier, context),
+        appBar: loggedin_topBar(authNotifier, context, false),
         body: new Container(
           color: Colors.white,
           child: new ListView(

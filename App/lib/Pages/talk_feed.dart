@@ -27,7 +27,8 @@ class _TalksFeedState extends State<TalksFeed> {
 
 
     return Scaffold(
-      appBar: loggedin_topBar(authNotifier, context),
+        key: Key('TalksFeed'),
+      appBar: loggedin_topBar(authNotifier, context, true),
       body: ListView.separated( itemCount: talkNotifier.talkList.length, separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (BuildContext context, int index) {
           return ListTile(

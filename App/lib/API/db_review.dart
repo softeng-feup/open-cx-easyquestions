@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'db_talk.dart';
 
+//switched to mongo
 addReview(TalkNotifier talkNotifier, Review review) async {
 
   CollectionReference reviewRef = await Firestore.instance.collection('Reviews');
@@ -22,6 +23,7 @@ addReview(TalkNotifier talkNotifier, Review review) async {
 
 }
 
+//switched to mongo
 loadReviews(ReviewNotifier reviewNotifier) async {
   QuerySnapshot snapshot = await Firestore.instance.collection('Reviews').getDocuments();
   snapshot.documents.forEach((document)
@@ -43,7 +45,7 @@ getTalkRelatedReviews(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier){
 
 removeReviewFromTalk(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier)
 {
-  List<String> ids = talkNotifier.currentTalk.reviewsIDs;
+  List ids = talkNotifier.currentTalk.reviewsIDs;
 
   for(int i=0; i<talkNotifier.currentTalk.reviewsIDs.length; i++){
     String key = talkNotifier.currentTalk.reviewsIDs[i];
@@ -52,17 +54,16 @@ removeReviewFromTalk(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier)
       ids.remove(key);
       talkNotifier.currentTalk.reviewsIDs=ids;
     }
-
   }
-
   updateTalk(talkNotifier);
 }
 
 
+//switched to mongo
 removeReview(TalkNotifier talkNotifier, ReviewNotifier reviewNotifier) async {
   Review review = reviewNotifier.currentReview;
 
-  await Firestore.instance.collection('Reviews').document(reviewNotifier.currentReview.idDoc).delete();
+  await Firestore.instance.collection('Reviews').document(review.idDoc).delete();
 
   removeReviewFromTalk(talkNotifier, reviewNotifier);
   updateTalk(talkNotifier);

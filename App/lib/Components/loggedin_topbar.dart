@@ -3,7 +3,7 @@ import 'package:app/Pages/talk_feed.dart';
 import 'package:app/Pages/user_profile.dart';
 import 'package:flutter/material.dart';
 
-Widget loggedin_topBar(authNotifier, context){
+Widget loggedin_topBar(authNotifier, context, isTalksFeed){
   return AppBar(
     title: Text(
         authNotifier.firebaseUser != null ? authNotifier.firebaseUser.displayName : "Error!"
@@ -23,5 +23,6 @@ Widget loggedin_topBar(authNotifier, context){
       ),
 
     ],
+    automaticallyImplyLeading: isTalksFeed ? false : true,
   );
 }

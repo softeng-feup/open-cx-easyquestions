@@ -72,6 +72,7 @@ class _LoginState extends State<Login> {
                               ,),
 
                             TextFormField(
+                              key: Key('email'),
                               validator: (input) {
                                 if(input.isEmpty){
                                   return 'Provide a valid email please'; //TODO: verification with regex
@@ -84,6 +85,7 @@ class _LoginState extends State<Login> {
                               onSaved: (input) => email = input,
                             ),
                             TextFormField(
+                              key: Key('password'),
                               validator: (input) {
                                 if(input.length < 6){ //TODO: verification with regex + encryption
                                   return 'Longer password please';
@@ -103,6 +105,7 @@ class _LoginState extends State<Login> {
 
                             SizedBox(height: 10,),
                             RaisedButton(
+                              key: Key('LOGIN'),
                               padding: const EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 4.0),
                               textColor: Colors.white,
                               color: Colors.blue,

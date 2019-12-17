@@ -12,6 +12,10 @@ class User {
   User({this.permission, this.avatar, this.fullname, this.age, this.description, this.authID});
 
 
+  User.fromJson(Map<String, dynamic> json) {
+    fullname = json['fullname'];
+  }
+
   User.fromMap(Map<dynamic, dynamic> data) {
     idDoc = data['idDoc'];
     authID = data['AuthID'];

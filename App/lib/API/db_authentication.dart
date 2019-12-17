@@ -1,8 +1,5 @@
-
-import 'package:app/Components/error.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'db_user.dart';
 

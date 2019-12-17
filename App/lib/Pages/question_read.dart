@@ -67,7 +67,7 @@ class _ReadQuestionState extends State<ReadQuestion>{
     talkNotifier.currentTalk.questions=[];
 
     return Scaffold(
-      appBar: loggedin_topBar(authNotifier, context),
+      appBar: loggedin_topBar(authNotifier, context, false),
       body:
       (questionsToDisplay.isEmpty ? noDataToShow() : displayQuestions(questionsToDisplay, authNotifier, questionNotifier, talkNotifier)),
     );

@@ -1,3 +1,4 @@
+import 'package:app/API/db_user.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:app/Pages/Authentication/register.dart';
 
 class Welcome extends StatelessWidget{
   Widget build(BuildContext context) {
+
+//    getUserFromDB();
 
     return Scaffold(
     body: Column(

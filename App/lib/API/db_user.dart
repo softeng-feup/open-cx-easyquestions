@@ -1,6 +1,6 @@
+
 import 'dart:io';
 
-import 'package:app/Model/talk.dart';
 import 'package:app/Model/user.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
@@ -10,6 +10,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
+
+//FIREBASE
 void getUserFromDatabase(AuthNotifier authNotifier, String authID) async {
   QuerySnapshot snapshot = await Firestore.instance.collection('Users').getDocuments();
 
@@ -35,9 +37,6 @@ registerUser(FirebaseUser firebaseUser, String fullname, String age, String type
     user = new User(permission: 1, avatar: avatar, fullname: fullname, age: age, description: null, authID: firebaseUser.uid);
   if(type == 'Normal')
     user = new User(permission: 0, avatar: avatar, fullname: fullname, age: age, description: null, authID: firebaseUser.uid);
-
-
-
 
   CollectionReference userRef = await Firestore.instance.collection('Users');
 

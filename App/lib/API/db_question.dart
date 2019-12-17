@@ -1,10 +1,7 @@
 import 'package:app/Model/question.dart';
-import 'package:app/Model/talk.dart';
 import 'package:app/Notifiers/notifier_question.dart';
 import 'package:app/Notifiers/notifier_talk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'db_talk.dart';
 
 loadQuestions(QuestionNotifier questionNotifier) async {
@@ -28,7 +25,7 @@ getTalkRelatedQuestions(TalkNotifier talkNotifier, QuestionNotifier questionNoti
 }
 
 removeQuestionFromTalk(TalkNotifier talkNotifier, QuestionNotifier questionNotifier ){
-  List<String> ids = talkNotifier.currentTalk.questionIDs;
+  List ids = talkNotifier.currentTalk.questionIDs;
 
   for(int i=0; i<talkNotifier.currentTalk.questionIDs.length; i++){
     String key = talkNotifier.currentTalk.questionIDs[i];
@@ -71,5 +68,4 @@ removeQuestion(TalkNotifier talkNotifier, QuestionNotifier questionNotifier) asy
 
   removeQuestionFromTalk(talkNotifier, questionNotifier);
   updateTalk(talkNotifier);
-
 }
