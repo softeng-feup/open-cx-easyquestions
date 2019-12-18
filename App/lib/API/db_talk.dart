@@ -14,8 +14,15 @@ loadTalks(TalkNotifier talkNotifier) async {
   {
 
     Talk talk = Talk.fromMap(document.data);
+
     talkNotifier.currentTalk=talk;
-    getUserAvatar(talkNotifier, talkNotifier.currentTalk.speakerID);
+
+      if(talk.speakerName == "") //nao pode ser com o notifier pq e assincrono
+        getUserName(talkNotifier, talkNotifier.currentTalk.speakerID);
+
+      if(talk.speakerAvatar == "")
+        getUserAvatar(talkNotifier, talkNotifier.currentTalk.speakerID);
+
     _talkList.add(talk);
 
   });

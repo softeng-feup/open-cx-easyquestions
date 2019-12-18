@@ -1,15 +1,20 @@
+import 'package:app/API/db_review.dart';
 import 'package:app/API/db_user.dart';
 import 'package:app/Components/loggedin_topbar.dart';
 import 'package:app/Notifiers/notifier_auth.dart';
+import 'package:app/Notifiers/notifier_review.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Components/image_banner.dart';
 import 'package:app/Pages/Authentication/login.dart';
 import 'package:app/Pages/Authentication/register.dart';
+import 'package:provider/provider.dart';
 
 class Welcome extends StatelessWidget{
   Widget build(BuildContext context) {
 
-//    getUserFromDB();
+    ReviewNotifier reviewNotifier = Provider.of<ReviewNotifier>(context, listen: false);
+
+    loadReviews_MDb(reviewNotifier);
 
     return Scaffold(
     body: Column(

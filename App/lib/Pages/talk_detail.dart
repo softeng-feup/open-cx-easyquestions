@@ -61,7 +61,6 @@ class _TalkDetailState extends State<TalkDetail> {
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
 
     String avatar = (talkNotifier.currentTalk.speakerAvatar);
-    print(avatar);
 
     return Scaffold(
       key: Key('TalkDetails'),
@@ -118,11 +117,10 @@ class _TalkDetailState extends State<TalkDetail> {
                               ),
                               textAlign: TextAlign.left,
                             ),
-                            Text("by " + talkNotifier.currentTalk.speakerID, //TODO: change to name!
+                            Text(talkNotifier.currentTalk.speakerName,
                               style: TextStyle(
                                 fontSize: 10.0,
                               ),
-                              textAlign: TextAlign.left,
                             ),
 
                            ]

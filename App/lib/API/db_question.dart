@@ -25,7 +25,7 @@ getTalkRelatedQuestions(TalkNotifier talkNotifier, QuestionNotifier questionNoti
 }
 
 removeQuestionFromTalk(TalkNotifier talkNotifier, QuestionNotifier questionNotifier ){
-  List ids = talkNotifier.currentTalk.questionIDs;
+  var ids = new List<String>.from(talkNotifier.currentTalk.questionIDs);
 
   for(int i=0; i<talkNotifier.currentTalk.questionIDs.length; i++){
     String key = talkNotifier.currentTalk.questionIDs[i];

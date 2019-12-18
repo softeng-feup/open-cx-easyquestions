@@ -105,7 +105,8 @@ class _WriteReviewState extends State<WriteReview>{
     review.talkid = talkNotifier.currentTalk.idDoc;
     review.authorUsername = authNotifier.firebaseUser.displayName;
 
-    addReview(talkNotifier, review);
+   // addReview(talkNotifier, review);
+    addReview_MDb(talkNotifier, review);
 
     Navigator.pop(context,);
   }

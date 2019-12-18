@@ -18,7 +18,7 @@ class _ReadReviewState extends State<ReadReview>{
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
     ReviewNotifier reviewNotifier = Provider.of<ReviewNotifier>(context, listen: false);
 
-    loadReviews(reviewNotifier);
+    loadReviews_MDb(reviewNotifier);
     getTalkRelatedReviews(talkNotifier, reviewNotifier);
   }
 
@@ -35,7 +35,8 @@ class _ReadReviewState extends State<ReadReview>{
       return AlertDialog(
         title: Text("Press button to confirm!"),
         content: RaisedButton.icon(onPressed: () {
-          removeReview(talkNotifier, reviewNotifier);
+          removeReview_MDb(talkNotifier, reviewNotifier);
+          //removeReview(talkNotifier, reviewNotifier);
           //2 pops para obrigar o refresh
           Navigator.pop(context, );
           Navigator.pop(context, );
@@ -50,6 +51,8 @@ class _ReadReviewState extends State<ReadReview>{
     TalkNotifier talkNotifier = Provider.of<TalkNotifier>(context, listen: false);
     ReviewNotifier reviewNotifier = Provider.of<ReviewNotifier>(context, listen: false);
 
+    //print(reviewNotifier.reviewList['5dfa4eee3900ae4d7805a454'].idDoc);
+
     List<Review> reviewsToDisplay = talkNotifier.currentTalk.reviews;
     talkNotifier.currentTalk.reviews=[];
 
@@ -61,6 +64,7 @@ class _ReadReviewState extends State<ReadReview>{
   }
 
   Widget displayReviews(List<Review> reviewsToDisplay,AuthNotifier authNotifier, TalkNotifier talkNotifier, ReviewNotifier reviewNotifier ){
+
     return ListView.separated(
       itemCount: reviewsToDisplay.length,
       separatorBuilder: (context, index) => Divider(),

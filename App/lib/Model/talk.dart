@@ -10,6 +10,7 @@ class Talk{
   String body;
 
   String speakerAvatar;
+  String speakerName;
   String speakerID;
 
   Timestamp schedule;
@@ -33,6 +34,7 @@ class Talk{
     questionIDs = data['Questions'];
     reviewsIDs = data['Reviews'];
     speakerAvatar = data['SpeakerAvatar'];
+    speakerName = data['SpeakerName'];
   }
 
   Map<String, dynamic> toMap(){
@@ -45,6 +47,7 @@ class Talk{
       'Reviews' : reviewsIDs,
       'SpeakerID' : speakerID,
       'SpeakerAvatar' : speakerAvatar,
+      'SpeakerName': speakerName,
     };
   }
 

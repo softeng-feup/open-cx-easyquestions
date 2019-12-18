@@ -81,8 +81,14 @@ updateUser(User user, File image) async{
 }
 
 void  getUserAvatar(TalkNotifier talkNotifier, String idDoc) async {
-  QuerySnapshot snapshot = await Firestore.instance.collection('Users').getDocuments();
+  await Firestore.instance.collection('Users').document(idDoc).get().then((doc)
+      {
+        User user = User.fromMap(doc.data);
+        talkNotifier.currentTalk.speakerAvatar = user.avatar;
+      }
 
+  );
+/*
   snapshot.documents.forEach((document)
   {
 
@@ -93,4 +99,15 @@ void  getUserAvatar(TalkNotifier talkNotifier, String idDoc) async {
     }
 
   });
+  */
+
+}
+
+void  getUserName(TalkNotifier talkNotifier, String idDoc) async {
+  await Firestore.instance.collection('Users').document(idDoc).get().then((doc)
+  {
+    User user = User.fromMap(doc.data);
+    talkNotifier.currentTalk.speakerName = user.fullname;
+  }
+  );
 }
