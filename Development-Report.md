@@ -12,18 +12,14 @@ You can find here detailed information about the (sub)product, hereby mentioned 
   * [User stories](#User-stories)
   * [Domain model](#Domain-model)
 * Architecture and Design
-  * [Architectural and design decisions]()
-  * [Technological architecture]()
-  * [Logical architecture]()
-* Implementation
-  * [Source code]()
-  * [Issues](): feature requests, bug fixes, improvements.
-* Test
-  * [Automated tests](): Functional tests, integration tests, acceptance tests, as much automated as possible.
-* Change management
-  * [Issues at Github]()
-* Project management
-  * Tasks management tool 
+  * [Logical architecture](#Logical-architecture)
+  * [Physical architecture](#Physical-architecture)
+  * [Prototype](#Prototype)
+* [Implementation](#Implementation)
+* [Test](#Test)
+* [Configuration and change management](#Configuration-and-change-management)
+* [Project management](#Project-management)
+
 
 So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
@@ -31,6 +27,7 @@ Please contact us!
 
 Thank you!
 
+# Business Modeling
 
 ## Product Vision
 A aplicação procura estimular a relação participante-orador, facilitando a colocação de perguntas durante uma palestra. Estas podem ser anónimas ou não e feitas durante ou após o evento. O moderador pode selecionar as perguntas mais interessantes no momento, passando-as ao orador que lhes dará resposta; as restantes perguntas estarão disponíveis da página do orador e, quando respondidas, ficarão disponíveis para todos.
@@ -41,7 +38,7 @@ A aplicação está disponível para Android e o link para download deverá ser 
 ## Elevator Pitch
 Alguma vez sentiu que, na sua conferência, não foram colocadas questões suficientes ao orador? Somos a equipa da Easy Questions. Com a nossa aplicação os participantes podem esclarecer todas as suas dúvidas, anonimamente ou não, durante ou depois de uma apresentação. Por outro lado, gostaria de receber o feedback dos seus participantes? Esta aplicação permite que a sua voz seja ouvida contribuindo para melhorias na organização de futuros eventos. 
 
-## Requirements
+# Requirements
 
 ### Use case diagram 
 ![Use case diagram](usecase-diagram.jpg)
@@ -101,7 +98,7 @@ O utilizador deve ter efetuado o login com sucesso e selecionado uma Talk em con
 * **Alternative Flows and Exceptions**.
 Mensagens vazias não são permitidas: o utilizador mantém-se na mesma página até que pressione um botão para sair ou escreva algum texto.
 
-### Read Question & Review
+#### Read Question & Review
 * **Actor**
 Speaker, Participant, Manager
 
@@ -119,7 +116,7 @@ O utilizador deve ter efetuado o login com sucesso e selecionado uma Talk em con
 * **Alternative Flows and Exceptions**.
 Se uma Talk não tiver reviews ou questões, será exibida uma página de erro.
 
-### Answer question
+#### Answer question
 * **Actor**
 Speaker
 
@@ -140,7 +137,7 @@ O utilizador deverá apenas responder às questões que estão associadas à sua
 Mensagens vazias não são permitidas: o utilizador mantém-se na mesma página até que pressione um botão para sair ou escreva algum texto.
 
 
-### Delete Question & Review
+#### Delete Question & Review
 * **Actor**
 Manager
 
@@ -157,14 +154,13 @@ O utilizador pode eliminar questões ou reviews que não sejam oportunas ou que 
 Se uma Talk não tiver reviews ou questões, será exibida uma página de erro, pelo que o Manager não pode eliminar nada.
 
 
-
-
 ### User stories
+Todas as user stories podem ser encontradas no [Trello](https://trello.com/b/OYwLccwN/easyquestions), com mais detalhes, incluindo os ACCEPTANCE TESTS e VALUE & EFFORT. 
 
 * **Como utilizador, quero ter acesso à lista de eventos**
 Seja como participante, orador ou manager quero ter acesso à lista de eventos, assim como às suas respetivas informações (local, hora).
 
-![Use case diagram](Images/userstory1.png)
+![Images/userstory1.png](Images/userstory1.png)
 
 * **Como utilizador quero avaliar**
 Seja como participante, orador ou manager quero escrever avaliações em relação a um evento, promovendo a sua melhoria.
@@ -174,50 +170,42 @@ Seja como participante, orador ou manager quero escrever avaliações em relaç�
 * **Como orador quero ler avaliaçoes**
 Como orador, quero ler as avaliações da minha sessão, de forma a melhorar as minhas conferências.
 
-![Images/Use case diagram](Images/userstory3.png)
+![Images/userstory3](Images/userstory3.png)
 
 * **Como participante, quero escrever questões**
 Como participante quero escrever questões ao orador, anónimas ou não, para esclarecer as minhas dúvidas sobre a sessão.
 
-![Images/Use case diagram](Images/userstory4.png)
+![Images/usersory4.png](Images/userstory4.png)
 
 * **Como orador, quero ler questões**
 Como orador, quero ler as questões sobre a minha conferência no fim da mesma, para poder dar respostas às perguntas não abordadas durante a sessão.
 
-![Images/Use case diagram](Images/userstory5.png)
+![Images/userstory5.png](Images/userstory5.png)
 
 * **Como manager, quero apagar questões**
 Como manager, quero poder apagar questões, pois podem ser repetidas ou despropositadas.
 
-![Images/Use case diagram](Images/userstory6.png)
+![Images/userstory6.png](Images/userstory6.png)
 
 * **Como manager, quero apagar avaliações**
 Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despropositadas.
 
-![Images/Use case diagram](Images/userstory7.png)
+![Images/userstory7.png](Images/userstory7.png)
 
 ### Domain model
 ![Domain Mode](domain-model.png)
 
-## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization. 
-
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
-
+# Architecture and Design
 ### Logical architecture
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+Desde o inicio que tentamos estruturar bem toda a nossa aplicação. Seguimos o modelo MVC (Model View Controller) o que permitiu um desenvolvimento rápido da aplicação, assim como permitirá uma melhor manutenção e escabilidade do mesmo. Deste modo, o código divide-se em:
 
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
-* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
-* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+- API (= Controller): permite à aplicação obter todos os dados que precisa das bases de dados;
+- Model: contem as estruturas para todos os nossos dados (Question, Review, Talk, User);
+- Components (= View): contem widgets que são "constantes" para toda a aplicacão, como a top bar, mensagens de erro, etc.
+- Pages (= View): interface para o utilizador.
 
 ### Physical architecture
 ![Mockups/physical-diagram](Images/physical-diagram.jpg)
-
 
 Como backend começamos por desevolver a nossa aplicação recorrendo ao Firebase. BaaS ou BackEnd As A Service (MBaaS = Mobile BackEnd As A Service) é um serviço disponibilizado pelo Firebase em que toda a estrutura do backend como configuração de servidor, integração com a base de dados, sistema de push notification, etc., estão completamente prontos para se integrados com a aplicação. O Firebase permite ainda guardar binary files (tal como imagens), na Google Cloud Storage, úteis para armazenar os avatares dos nossos utilizadores. Utilizamos ainda o Firebase Authentication uma vez que possui um sistema de autenticação email/password (que pode ser estendido para contas de Gmail, Facebook, Github, etc.) já integrado que facilita todo o processamento/armazenamento de dados mais sensíveis (como passwords).
 No final do desenvolvimento da aplicação decidimos também utilizar o Open-cx-server exclusivamente para as Reviews.
@@ -225,7 +213,23 @@ No final do desenvolvimento da aplicação decidimos também utilizar o Open-cx-
 Relativamente à framework utilizada, recorremos ao Flutter por sugestão dos docentes da disciplina. 
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+Todas as funcionalidades da nossa aplicação podem ser vistas no nosso [powerpoint][https://github.com/softeng-feup/open-cx-easyquestions/Presentation/Presentation.pptx], que descreve as user stories e possui um vídeo de demonstração das mesmas.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
 
+# Implementation
+A aplicação contou com 5 iterações:
+1) Dedicou-se algum tempo a aprender a Flutter/Dart; desevolveu-se a estrutura das páginas de login, registo e home (sem qualquer backend);
+2) Dedicou-se algum tempo a compreender o Firebase e a sua estrutura, assim como a conectar a aplicação ao mesmo. Desenvolveu-se a página das Talks. Páginas de autenticação e registo já com backend.
+3) Desevolveram-se as restantes páginas.
+4) Alteração do Model/Review para se melhor ajustar ao open-cx-server; corrigiram-se alguns bugs.
+5) Integração do open-cx-server na aplicação; desenvolveram-se alguns testes; finalizou-se o relatório.
+
+# Test
+Para assegurar a qualidade das features desenvolvidas, testaram-se:
+
+> Sign-in and Sign-up: verificar se os dados foram colocados corretamente.
+
+Os acceptance tests estão descritos no [Trello](https://trello.com/b/OYwLccwN/easyquestions).
+
+# Project management
+Para a gestão do projeto recorremos ao [Trello](https://trello.com/b/OYwLccwN/easyquestions) e ao [Github](https://github.com/softeng-feup/open-cx-easyquestions).
