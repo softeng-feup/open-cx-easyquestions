@@ -8,10 +8,11 @@ import 'steps/review.dart';
 Future<void> main(){
   final config = FlutterTestConfiguration()
     ..features = [Glob(r"test_driver/features/**.feature")]
+	
 
     ..stepDefinitions = [
-      CheckEmail(), CheckPassword(), HitLoginButton(), UserLoggedIn(), //login.feature
-      UserLoggedIn(), SelectTalk(), HitsReviewButton(), CanMakeReview(), //review.feature
+      CheckEmail(), CheckPassword(), HitLoginButton(), UserLoggedIn(), //login.feature   -> erro a conectar com o firebase
+      UserLoggedIn(), SelectTalk(), HitsReviewButton(), CanMakeReview(), //review.feature 
     ]
 
     ..reporters = [ProgressReporter(), TestRunSummaryReporter()]
