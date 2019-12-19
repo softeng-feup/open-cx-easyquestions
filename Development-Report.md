@@ -213,7 +213,7 @@ No final do desenvolvimento da aplicação decidimos também utilizar o Open-cx-
 Relativamente à framework utilizada, recorremos ao Flutter por sugestão dos docentes da disciplina. 
 
 ### Prototype
-Todas as funcionalidades da nossa aplicação podem ser vistas no nosso [powerpoint][https://github.com/softeng-feup/open-cx-easyquestions/Presentation/Presentation.pptx], que descreve as user stories e possui um vídeo de demonstração das mesmas.
+Todas as funcionalidades da nossa aplicação podem ser vistas no nosso [powerpoint](Presentation/Presentation.pptx), que descreve as user stories e possui um vídeo de demonstração das mesmas.
 
 
 # Implementation
