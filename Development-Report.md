@@ -207,13 +207,13 @@ Desde o inicio que tentamos estruturar bem toda a nossa aplicação. Seguimos o 
 ### Physical architecture
 ![Mockups/physical-diagram](Images/physical-diagram.jpg)
 
-Como backend começamos por desevolver a nossa aplicação recorrendo ao Firebase. BaaS ou BackEnd As A Service (MBaaS = Mobile BackEnd As A Service) é um serviço disponibilizado pelo Firebase em que toda a estrutura do backend como configuração de servidor, integração com a base de dados, sistema de push notification, etc., estão completamente prontos para se integrados com a aplicação. O Firebase permite ainda guardar binary files (tal como imagens), na Google Cloud Storage, úteis para armazenar os avatares dos nossos utilizadores. Utilizamos ainda o Firebase Authentication uma vez que possui um sistema de autenticação email/password (que pode ser estendido para contas de Gmail, Facebook, Github, etc.) já integrado que facilita todo o processamento/armazenamento de dados mais sensíveis (como passwords).
+Começamos por desevolver a nossa aplicação recorrendo ao Firebase. BaaS ou BackEnd As A Service (MBaaS = Mobile BackEnd As A Service) é um serviço disponibilizado pelo Firebase em que toda a estrutura do backend como configuração de servidor, integração com a base de dados, sistema de push notification, etc., estão completamente prontos para se integrados com a aplicação. O Firebase permite ainda guardar binary files (tal como imagens), na Google Cloud Storage, úteis para armazenar os avatares dos nossos utilizadores. Utilizamos ainda o Firebase Authentication uma vez que possui um sistema de autenticação email/password (que pode ser estendido para contas de Gmail, Facebook, Github, etc.) já integrado que facilita todo o processamento/armazenamento de dados mais sensíveis (como passwords).
 No final do desenvolvimento da aplicação decidimos também utilizar o Open-cx-server exclusivamente para as Reviews.
 
 Relativamente à framework utilizada, recorremos ao Flutter por sugestão dos docentes da disciplina. 
 
 ### Prototype
-Todas as funcionalidades da nossa aplicação podem ser vistas no nosso [powerpoint][https://github.com/softeng-feup/open-cx-easyquestions/Presentation/Presentation.pptx], que descreve as user stories e possui um vídeo de demonstração das mesmas.
+Todas as funcionalidades da nossa aplicação podem ser vistas no nosso [powerpoint](Presentation/Presentation.pptx), que descreve as user stories e possui um vídeo de demonstração das mesmas.
 
 
 # Implementation
