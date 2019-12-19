@@ -15,6 +15,7 @@ Future<void> main(){
       CheckEmail(), CheckPassword(), HitLoginButton(), UserLoggedIn(), //login.feature   -> erro a conectar com o firebase
       UserLoggedIn(), SelectTalk(), HitsReviewButton(), CanMakeReview(), //review.feature
       UserisLoggedIn(), Select_Talk(), HitsQuestionButton(), CanMakeQuestion(),
+      UserisLoggedIn(), HitsProfileButton(), HitsUpdateButton(), ProfileUpdated(),
     ]
 
     ..reporters = [ProgressReporter(), TestRunSummaryReporter()]
