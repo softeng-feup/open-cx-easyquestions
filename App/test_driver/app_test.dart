@@ -4,6 +4,7 @@ import'package:gherkin/gherkin.dart';
 
 import 'steps/login.dart';
 import 'steps/review.dart';
+import 'steps/question.dart';
 
 Future<void> main(){
   final config = FlutterTestConfiguration()
@@ -12,7 +13,8 @@ Future<void> main(){
 
     ..stepDefinitions = [
       CheckEmail(), CheckPassword(), HitLoginButton(), UserLoggedIn(), //login.feature   -> erro a conectar com o firebase
-      UserLoggedIn(), SelectTalk(), HitsReviewButton(), CanMakeReview(), //review.feature 
+      UserLoggedIn(), SelectTalk(), HitsReviewButton(), CanMakeReview(), //review.feature
+      UserisLoggedIn(), Select_Talk(), HitsQuestionButton(), CanMakeQuestion(),
     ]
 
     ..reporters = [ProgressReporter(), TestRunSummaryReporter()]
