@@ -44,66 +44,188 @@ Alguma vez sentiu que, na sua conferência, não foram colocadas questões sufic
 ## Requirements
 
 ### Use case diagram 
-![Use case diagram](ESOF.vpd.png)
+![Use case diagram](usecase-diagram.jpg)
 
+#### Sign up
+* **Actor**
+Speaker e Participant
 
-* **Actor**. 
-1) Orador: representa um orador na conferência 
-2) Participante: representa um participante na conferência (utilizador com menos privilegios)
-3) Manager: representa a organização da conferência (utilizador com mais privilégios)
+* **Description**
+O utilizador cria uma conta na aplicação.
 
-* **Description**. 
-Caso seja responder a uma pergunta, fazê-la ou avaliar uma sessão, tudo é possível através da aplicação.
+* **Preconditions and Postconditions **
+Depois de criar a conta, o utilizador pode efetua o login para aceder à aplicação e todos os seus conteúdos.
 
-* **Preconditions and Postconditions**. 
-Tanto o Participante como o Orador devem registar-se na aplicação para poderem colocar/ler questões ou avaliações.
-
-* **Normal Flow**. 
-Utilizador: Efetua o login; seleciona o orador que quer avaliar/colocar questões; efetua a sua avaliação/questão.
-Efetua o login; seleciona a página de avaliações; escreve a sua avaliação.
-Orador: Efetua o login, abre a sua página de questões; responde às questões.
-Manager: Pode apagar questões ou avaliações; lê as avaliações.
+* **Normal Flow**
+1) Preenche todos os campos do registo (é feita uma verificação para garantir que 2 utilizadores não tenham as mesmas credênciais)
+2) Pressiona o botão 'REGISTER'
+3) É redirecionado para a página de boas-vindas, onde poderá prodeceder ao login.
 
 * **Alternative Flows and Exceptions**.
-O participante ou o orador não conseguem efetuar o login (os dados estão errados): são reencaminhados para uma página de recuperação de dados. Tentam efetuar o login posteriormente.
+O utilizador não consegue fazer o registo (as credências estão a ser utilizadas ou há campos vazios): aparece uma mensagem de aviso que indica quais os campos em falha.
+
+#### Sign in
+* **Actor**
+Speaker, Participant, Manager
+
+* **Description**. 
+O utilizador inicia sessão na aplicação.
+
+* **Preconditions and Postconditions**. 
+O utilizador deve ter efetuado um registo anteriormente. Depois de iniciar sessão corretamente, o utilizador pode aceder à aplicação e todos os seus conteúdos.
+
+* **Normal Flow**. 
+1) Preenche, corretamente, os campos email e password.
+2) Pressiona o botão 'LOGIN'.
+3) É redirecionado para a página com a listagem de todas as Talks, podendo interagir com a aplicação.
+
+* **Alternative Flows and Exceptions**.
+O utilizador não consegue efetuar o login (os dados estão errados): podem escolher a opção 'Recuperar password' - o Firebase envia um email para recuperar password.
+
+#### Write Question & Review
+* **Actor**
+Speaker, Participant, Manager
+
+* **Description**. 
+O utilizador pode escrever as suas questões (anónimas ou não) ou reviews, em relação a uma Talk.
+
+* **Preconditions and Postconditions**. 
+O utilizador deve ter efetuado o login com sucesso e selecionado uma Talk em concreto.
+
+* **Normal Flow**. 
+1) Seleciona uma Talk.
+2) Pressiona o botão 'Write Question' (para questões) ou 'Review Me!' (para reviews).
+3) É redirecionado para uma página onde pode escrever a sua questão(com uma checkbox onde especifica se é anónima ou não)/review.
+4) Após escrever, pressiona o botão 'SUBMIT' para que os dados sejam adicionados à Talk.
+
+* **Alternative Flows and Exceptions**.
+Mensagens vazias não são permitidas: o utilizador mantém-se na mesma página até que pressione um botão para sair ou escreva algum texto.
+
+### Read Question & Review
+* **Actor**
+Speaker, Participant, Manager
+
+* **Description**. 
+O utilizador pode ler todas as questões (anónimas ou não) ou reviews, em relação a uma Talk.
+
+* **Preconditions and Postconditions**. 
+O utilizador deve ter efetuado o login com sucesso e selecionado uma Talk em concreto.
+
+* **Normal Flow**. 
+1) Seleciona uma Talk.
+2) Pressiona o botão 'Read all questions' (para questões) ou 'Read all reviews' (para reviews).
+3) É redirecionado para uma página com uma listagem de todas as questões / reviews.
+
+* **Alternative Flows and Exceptions**.
+Se uma Talk não tiver reviews ou questões, será exibida uma página de erro.
+
+### Answer question
+* **Actor**
+Speaker
+
+* **Description**. 
+O utilizador pode responder às questões que lhe forem direcionadas (só o Speaker da Talk pode responder às questões dessa mesma Talk).
+
+* **Preconditions and Postconditions**. 
+O utilizador deverá apenas responder às questões que estão associadas à sua Talk.
+
+* **Normal Flow**. 
+1) Seleciona uma Talk.
+2) Pressiona o botão 'Read all questions'.
+3) Seleciona uma pergunta para responder.
+4) Escreve a sua resposta.
+5) Pressiona o botão 'SUBMIT'
+
+* **Alternative Flows and Exceptions**.
+Mensagens vazias não são permitidas: o utilizador mantém-se na mesma página até que pressione um botão para sair ou escreva algum texto.
+
+
+### Delete Question & Review
+* **Actor**
+Manager
+
+* **Description**. 
+O utilizador pode eliminar questões ou reviews que não sejam oportunas ou que estejam repetidas.
+
+* **Normal Flow**. 
+1) Seleciona uma Talk.
+2) Pressiona o botão 'Read all questions'.
+3) Seleciona uma pergunta para eliminar.
+4) Confirma a sua decisão.
+
+* **Alternative Flows and Exceptions**.
+Se uma Talk não tiver reviews ou questões, será exibida uma página de erro, pelo que o Manager não pode eliminar nada.
+
+
+
 
 ### User stories
 
 * **Como utilizador, quero ter acesso à lista de eventos**
 Seja como participante, orador ou manager quero ter acesso à lista de eventos, assim como às suas respetivas informações (local, hora).
 
-![Use case diagram](userstory1.png)
+![Use case diagram](Images/userstory1.png)
 
 * **Como utilizador quero avaliar**
 Seja como participante, orador ou manager quero escrever avaliações em relação a um evento, promovendo a sua melhoria.
 
-![Use case diagram](userstory2.png)
+![Images/userstory2.png](Images/userstory2.png)
 
 * **Como orador quero ler avaliaçoes**
 Como orador, quero ler as avaliações da minha sessão, de forma a melhorar as minhas conferências.
 
-![Use case diagram](userstory3.png)
+![Images/Use case diagram](Images/userstory3.png)
 
 * **Como participante, quero escrever questões**
 Como participante quero escrever questões ao orador, anónimas ou não, para esclarecer as minhas dúvidas sobre a sessão.
 
-![Use case diagram](userstory4.png)
+![Images/Use case diagram](Images/userstory4.png)
 
 * **Como orador, quero ler questões**
 Como orador, quero ler as questões sobre a minha conferência no fim da mesma, para poder dar respostas às perguntas não abordadas durante a sessão.
 
-![Use case diagram](userstory5.png)
+![Images/Use case diagram](Images/userstory5.png)
 
 * **Como manager, quero apagar questões**
 Como manager, quero poder apagar questões, pois podem ser repetidas ou despropositadas.
 
-![Use case diagram](userstory6.png)
+![Images/Use case diagram](Images/userstory6.png)
 
 * **Como manager, quero apagar avaliações**
 Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despropositadas.
 
-![Use case diagram](userstory7.png)
+![Images/Use case diagram](Images/userstory7.png)
 
 ### Domain model
-A simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+![Domain Mode](domain-model.png)
+
+## Architecture and Design
+The architecture of a software system encompasses the set of key decisions about its overall organization. 
+
+A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
+
+To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
+
+In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+
+### Logical architecture
+The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+
+It can be beneficial to present the system both in a horizontal or vertical decomposition:
+* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
+* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+
+### Physical architecture
+![Mockups/physical-diagram](Images/physical-diagram.jpg)
+
+
+Como backend começamos por desevolver a nossa aplicação recorrendo ao Firebase. BaaS ou BackEnd As A Service (MBaaS = Mobile BackEnd As A Service) é um serviço disponibilizado pelo Firebase em que toda a estrutura do backend como configuração de servidor, integração com a base de dados, sistema de push notification, etc., estão completamente prontos para se integrados com a aplicação. O Firebase permite ainda guardar binary files (tal como imagens), na Google Cloud Storage, úteis para armazenar os avatares dos nossos utilizadores. Utilizamos ainda o Firebase Authentication uma vez que possui um sistema de autenticação email/password (que pode ser estendido para contas de Gmail, Facebook, Github, etc.) já integrado que facilita todo o processamento/armazenamento de dados mais sensíveis (como passwords).
+No final do desenvolvimento da aplicação decidimos também utilizar o Open-cx-server exclusivamente para as Reviews.
+
+Relativamente à framework utilizada, recorremos ao Flutter por sugestão dos docentes da disciplina. 
+
+### Prototype
+To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+
+In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
 
