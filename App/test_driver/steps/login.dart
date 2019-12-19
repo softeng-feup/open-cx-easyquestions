@@ -3,8 +3,6 @@ import'package:gherkin/gherkin.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 
 class CheckEmail extends GivenWithWorld<FlutterWorld> {
-  CheckEmail() : super (StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
-
   @override
   Future<void> executeStep() async{
     String email = "admin@gmail.com";
@@ -18,8 +16,6 @@ class CheckEmail extends GivenWithWorld<FlutterWorld> {
 
 
 class CheckPassword extends AndWithWorld<FlutterWorld> {
-  CheckPassword() : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
-
   @override
   Future<void> executeStep() async {
     String password = "adminadmin";
@@ -32,9 +28,6 @@ class CheckPassword extends AndWithWorld<FlutterWorld> {
 }
 
 class HitLoginButton extends WhenWithWorld<FlutterWorld> {
-  HitLoginButton()
-      : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
-
   @override
   Future<void> executeStep() async {
    await FlutterDriverUtils.tap(world.driver, find.byValueKey('LOGIN'));
@@ -47,9 +40,7 @@ class HitLoginButton extends WhenWithWorld<FlutterWorld> {
 
 
 class UserLoggedIn extends ThenWithWorld<FlutterWorld> {
-  UserLoggedIn()
-      : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 20));
-  @override
+ @override
   Future<void> executeStep() async {
 
     await FlutterDriverUtils.waitForFlutter(world.driver);
