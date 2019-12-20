@@ -1,4 +1,4 @@
-Feature: Select Talk to make a question
+Feature: Select Profile to Update
 
    Background: User logs into the app
     Given User inserts an email
