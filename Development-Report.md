@@ -194,6 +194,7 @@ Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despr
 
 ### Domain model
 ![Domain Mode](domain-model.png)
+O nosso domain model segue a estrutura definida em [Model](App/lib/Model), onde se distinguem User, Question, Review e Talk. 
 
 # Architecture and Design
 ### Logical architecture
