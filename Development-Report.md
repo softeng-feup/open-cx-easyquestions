@@ -227,7 +227,9 @@ A aplicação contou com 5 iterações:
 # Test
 Para assegurar a qualidade das features desenvolvidas, testaram-se:
 
-> Sign-in and Sign-up: verificar se os dados foram colocados corretamente.
+> Sign-in : verificar se os dados foram colocados corretamente.
+> Verificar se o utilizador pode fazer reviews/questions.
+> Profile : verifica se o utilizador consegue fazer update de todas as informacoes
 
 Os acceptance tests estão descritos no [Trello](https://trello.com/b/OYwLccwN/easyquestions).
 
