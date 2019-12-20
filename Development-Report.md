@@ -194,6 +194,7 @@ Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despr
 
 ### Domain model
 ![Domain Mode](domain-model.png)
+
 O nosso domain model segue a estrutura definida em [Model](App/lib/Model), onde se distinguem User, Question, Review e Talk. 
 
 # Architecture and Design
@@ -229,10 +230,10 @@ A aplicação contou com 5 iterações:
 Para assegurar a qualidade das features desenvolvidas, testaram-se:
 
 > Sign-in : verificar se os dados foram colocados corretamente.
-> Verificar se o utilizador pode fazer reviews/questions.
-> Profile : verifica se o utilizador consegue fazer update de todas as informacoes
+> Question and Reviews: verificar se o utilizador pode fazer reviews/questions.
+> Profile : verificar se o utilizador consegue fazer update de todas as informacoes
 
-Os acceptance tests estão descritos no [Trello](https://trello.com/b/OYwLccwN/easyquestions).
+Os acceptance tests estão descritos no [Trello](https://trello.com/b/OYwLccwN/easyquestions), para cada user story.
 
 # Project management
 Para a gestão do projeto recorremos ao [Trello](https://trello.com/b/OYwLccwN/easyquestions) e ao [Github](https://github.com/softeng-feup/open-cx-easyquestions).
