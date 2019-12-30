@@ -201,6 +201,8 @@ O nosso domain model segue a estrutura definida em [Model](App/lib/Model), onde 
 ### Logical architecture
 Desde o inicio que tentamos estruturar bem toda a nossa aplicação. Seguimos o modelo MVC (Model View Controller) o que permitiu um desenvolvimento rápido da aplicação, assim como permitirá uma melhor manutenção e escabilidade do mesmo. Deste modo, o código divide-se em:
 
+![Mockups/logic-diagram](Images/logic.jpg)
+
 - API (= Controller): permite à aplicação obter todos os dados que precisa das bases de dados;
 - Model: contem as estruturas para todos os nossos dados (Question, Review, Talk, User);
 - Components (= View): contem widgets que são "constantes" para toda a aplicacão, como a top bar, mensagens de erro, etc.
