@@ -193,7 +193,7 @@ Como manager, quero poder apagar avaliações, pois podem ser repetidas ou despr
 ![Images/userstory7.png](Images/userstory7.png)
 
 ### Domain model
-![Domain Mode](domain-model.png)
+![Domain Mode](Domain%20Model.png)
 
 O nosso domain model segue a estrutura definida em [Model](App/lib/Model), onde se distinguem User, Question, Review e Talk. 
 
